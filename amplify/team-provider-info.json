@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lessonplanapp-dev-104554-authRole",
+      "UnauthRoleArn": "arn:aws:iam::555751041262:role/amplify-lessonplanapp-dev-104554-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::555751041262:role/amplify-lessonplanapp-dev-104554-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lessonplanapp-dev-104554-deployment",
+      "UnauthRoleName": "amplify-lessonplanapp-dev-104554-unauthRole",
+      "StackName": "amplify-lessonplanapp-dev-104554",
+      "StackId": "arn:aws:cloudformation:us-east-1:555751041262:stack/amplify-lessonplanapp-dev-104554/9bb49420-e53e-11ee-abf8-0aa59e1d679f",
+      "AmplifyAppId": "d34yhhdrv2uvqx"
+    },
+    "categories": {
+      "auth": {
+        "lessonplanapp7c99d5e8": {}
+      }
+    }
+  }
+}

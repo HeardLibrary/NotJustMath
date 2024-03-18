@@ -1,0 +1,16 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type LessonPlanMetadata @model {
+  id: String!
+  text_title: String
+  text_author: String
+  text_publication_year: Int
+  grade_level_lower: Int!
+  grade_level_upper: Int!
+  math_concept_tags: [String]
+  social_concept_tags: [String]
+  standard_tags: [String]
+  approval_state: String!
+}

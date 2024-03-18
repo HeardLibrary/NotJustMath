@@ -1,0 +1,10 @@
+{
+  "resourceName": "lessonPlanMetadata",
+  "tableName": "lessonPlanMetadata",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
