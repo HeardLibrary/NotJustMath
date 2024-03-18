@@ -1,0 +1,17 @@
+.home-option-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-option-container button {
+    padding: 20px;
+    border: 0px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.home-option-container button:hover {
+    background-color: gray;
+}
