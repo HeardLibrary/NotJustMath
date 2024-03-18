@@ -31,7 +31,7 @@ const App = () => {
       element: <UploadPage/>
     },
     {
-      path: "/lesson/:lessonUUID",
+      path: "/lesson/:lessonID",
       element: <LessonPage/>
     },
     {

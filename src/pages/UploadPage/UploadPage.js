@@ -18,16 +18,16 @@ const UploadPage = () => {
             console.warn("No file loaded.");
         }
 
-        const lessonPlanUUID = crypto.randomUUID();
+        const lessonPlanID = crypto.randomUUID();
         try {
             await uploadData({
-                key: lessonPlanUUID,
+                key: lessonPlanID,
                 data: file
             }).result
             
             try {
                 await addLessonPlan({
-                    id: lessonPlanUUID,
+                    id: lessonPlanID,
                     grade_level_lower: 3,
                     grade_level_upper: 5,
                     approval_state: "PENDING"
