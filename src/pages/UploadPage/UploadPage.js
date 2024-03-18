@@ -1,6 +1,7 @@
 import { Authenticator } from "@aws-amplify/ui-react";
 import { useState } from "react";
-import {uploadData} from 'aws-amplify/storage'
+import { uploadData } from "aws-amplify/storage";
+import { addLessonPlan } from "../../util/dynamo";
 import Header from "../../components/Header/Header";
 import "./UploadPage.css";
 
@@ -9,7 +10,7 @@ const UploadPage = () => {
 
     const handleFileChange = (event) => {
         setFile(event?.target?.files[0]);
-        console.log("New file uploaded.");
+        console.log("New file loaded.");
     }
 
     const handleUpload = async () => {
@@ -19,15 +20,24 @@ const UploadPage = () => {
 
         const lessonPlanUUID = crypto.randomUUID();
         try {
-            console.log("Attempting file upload ...");
-
-            const result = await uploadData({
+            await uploadData({
                 key: lessonPlanUUID,
                 data: file
             }).result
+            
+            try {
+                await addLessonPlan({
+                    id: lessonPlanUUID,
+                    grade_level_lower: 3,
+                    grade_level_upper: 5,
+                    approval_state: "PENDING"
+                });
 
-            console.log("File uploaded!");
-            console.log(result)
+            } catch(error) {
+                console.error("Lesson plan metadata upload failed!");
+                console.error(error);
+            }
+
         } catch (error) {
             console.error("File upload failed!");
             console.error(error)
