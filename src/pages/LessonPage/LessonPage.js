@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { getUrl } from "aws-amplify/storage";
 import Header from "../../components/Header/Header";
 import "./LessonPage.css";
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 
 const pdfjs = await import('pdfjs-dist/build/pdf');
 const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.min');
@@ -43,7 +43,7 @@ const LessonPage = () => {
     }
 
     const previousPage = () => {
-        if (pageNumber > 0) {
+        if (pageNumber > 1) {
             setPageNumber(pageNumber-1)
         }
     }
