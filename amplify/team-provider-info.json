@@ -14,6 +14,13 @@
     "categories": {
       "auth": {
         "lessonplanapp7c99d5e8": {}
+      },
+      "storage": {
+        "lessonPlanBucket": {},
+        "lessonPlanMetadata": {}
+      },
+      "api": {
+        "lessonplanapp": {}
       }
     }
   }
