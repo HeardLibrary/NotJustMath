@@ -96,3 +96,29 @@
     border-radius: 12px;
     border: 1.25px solid lightslategray;
 }
+
+.upload-submit-button {
+    margin-top: 18px;
+    margin-bottom: 36px;
+    font-size: 16px;
+    padding: 12px;
+    border: 1.25px solid lightgray;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.upload-submit-button:hover {
+    background-color: lightslategray;
+}
+
+.upload-state {
+    margin-top: 18px;
+}
+
+.success {
+    color: green;
+}
+
+.failure {
+    color: red;
+}

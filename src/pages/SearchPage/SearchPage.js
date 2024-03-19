@@ -22,7 +22,6 @@ const SearchPage = () => {
             <p>This is the Search Page</p>
             <div className="search-results-container">
                 {lessonPlans.map(lessonPlan => {
-                    console.log(lessonPlan);
                     return <LessonPlanResultPreview key={lessonPlan.id} lessonPlanMetadata={lessonPlan} />
                 })}
             </div>

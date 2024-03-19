@@ -1,19 +1,30 @@
 import { generateClient } from "aws-amplify/api";
 import { createLessonPlanMetadata } from "../graphql/mutations.js";
-import { listLessonPlanMetadata } from "../graphql/queries.js";
+import { getLessonPlanMetadata, listLessonPlanMetadata } from "../graphql/queries.js";
+
 
 const apiClient = generateClient();
 
 export const addLessonPlan = async (lessonPlanMetadata) => {
+    await apiClient.graphql({
+        query: createLessonPlanMetadata,
+        variables: {
+            input: lessonPlanMetadata
+        }
+    })
+}
+
+export const getLessonPlanByID = async (lessonPlanID) => {
     try {
-        await apiClient.graphql({
-            query: createLessonPlanMetadata,
+        const result = await apiClient.graphql({
+            query: getLessonPlanMetadata,
             variables: {
-                input: lessonPlanMetadata
+                id: lessonPlanID
             }
-        })
+        });
+        return result.data.getLessonPlanMetadata;
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -22,9 +33,9 @@ export const listLessonPlans = async () => {
         const result = await apiClient.graphql({
             query: listLessonPlanMetadata,
         });
-        return result.data.listLessonPlanMetadata.items;
+        return result.data.listLessonPlanMetadata.items.filter((item) => item != null);
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }
 
@@ -37,7 +48,8 @@ export const listLessonPlansWithCriteria = async (lessonPlanCriteria) => {
             }
         });
         console.log(result);
+        return result;
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }

@@ -9,27 +9,39 @@ const MATH_TAG = "math-tag";
 const STANDARD_TAG = "standard-tag";
 const SOCIAL_TAG = "social-tag";
 
+const UPLOAD_BEFORE = "before";
+const UPLOAD_DURING = "during";
+const UPLOAD_SUCCESS = "success";
+const UPLOAD_FAILURE = "failure";
+
 const UploadPage = () => {
     const [file, setFile] = useState(null);
     const [metadata, setMetadata] = useState({});
     const [mathTags, setMathTags] = useState([]);
     const [standardTags, setStandardTags] = useState([]);
     const [socialTags, setSocialTags] = useState([]);
+    const [uploadState, setUploadState] = useState(UPLOAD_BEFORE);
 
     const handleFileChange = (event) => {
         setFile(event?.target?.files[0]);
-        console.log("New file loaded.");
-    }
+        setUploadState(UPLOAD_BEFORE);
+}
 
     const handleGenericChange = (event) => {
-        metadata[event.target.name] = event.target.value
-        setMetadata(metadata)
+        metadata[event.target.name] = event.target.value;
+        setMetadata(metadata);
+        setUploadState(UPLOAD_BEFORE);
     }
 
     const handleTagSetChange = (event) => {
         const tagType = event.target.name;
         let tagInput = document.getElementById(tagType);
+        if(tagInput.value.length < 1) {
+            return;
+        }
+
         let oldTags = null;
+        setUploadState(UPLOAD_BEFORE);
         switch (tagType) {
             case MATH_TAG:
                 oldTags = [...mathTags]
@@ -54,12 +66,33 @@ const UploadPage = () => {
         }
     }
 
+    const resetInputFields = () => {
+        // Reset high-level inputs
+        document.getElementById("lesson_title").value = null;
+        document.getElementById("file-input").value = null;
+
+        // Reset grade level inputs
+        document.getElementById("grade_level_lower").value = null;
+        document.getElementById("grade_level_upper").value = null;
+
+        // Reset text inputs
+        document.getElementById("text_title").value = null;
+        document.getElementById("text_author").value = null;
+        document.getElementById("text_publication_year").value = null;
+
+        // Reset tag inputs
+        setMathTags([]);
+        setSocialTags([]);
+        setStandardTags([]);
+    }
+
     const handleUpload = async () => {
         if (!file) {
             console.warn("No file loaded.");
         }
 
         const lessonPlanID = crypto.randomUUID();
+        setUploadState(UPLOAD_DURING)
         try {
             await uploadData({
                 key: lessonPlanID,
@@ -76,14 +109,38 @@ const UploadPage = () => {
                     ...metadata
                 }
                 await addLessonPlan(lessonPlanPayload);
+
+                setUploadState(UPLOAD_SUCCESS)
+                resetInputFields();
+                setTimeout(() => {
+                    setUploadState(UPLOAD_BEFORE)
+                }, 5000);
             } catch(error) {
                 console.error("Lesson plan metadata upload failed!");
                 console.error(error);
+                setUploadState(UPLOAD_FAILURE);
             }
 
         } catch (error) {
             console.error("File upload failed!");
             console.error(error)
+            setUploadState(UPLOAD_FAILURE);
+        }
+    }
+
+    const renderUpload = () => {
+        switch (uploadState) {
+            case UPLOAD_BEFORE:
+                return <button className="upload-submit-button" onClick={handleUpload}>Upload</button>;
+            case UPLOAD_DURING:
+                return <div className="upload-state">Uploading lesson plan ... </div>;
+            case UPLOAD_SUCCESS:
+                return <div className="upload-state success">Lesson plan uploaded!</div>;
+            case UPLOAD_FAILURE:
+                return <div className="upload-state failure">Upload failed, please make sure all required fields are filled out and try again.</div>
+            default:
+                throw new Error("Shouldn't happen, unknown upload state: ", uploadState);
+
         }
     }
    
@@ -99,7 +156,7 @@ const UploadPage = () => {
                             <h3 className="input-section-title">Lesson Plan</h3>
                             <div className="input-container">
                                 <label>Lesson Title<span className="required">*</span></label>
-                                <input name="lesson_title" type="text" onChange={handleGenericChange}/>
+                                <input id="lesson_title" name="lesson_title" type="text" onChange={handleGenericChange}/>
                             </div>
                             <div className="input-container">
                                 <label htmlFor="file-input">Lesson Plan PDF<span className="required">*</span></label>
@@ -111,11 +168,11 @@ const UploadPage = () => {
                             <h3 className="input-section-title">Grade Level Range</h3>
                             <div className="input-container">
                                 <label>Grade Level Lower Bound<span className="required">*</span></label>
-                                <input name="grade_level_lower" type="number" min={1} max={16} onChange={handleGenericChange}/>
+                                <input id="grade_level_lower" name="grade_level_lower" type="number" min={1} max={16} onChange={handleGenericChange}/>
                             </div>
                             <div className="input-container">
                                 <label>Grade Level Upper Bound<span className="required">*</span></label>
-                                <input name="grade_level_upper" type="number" min={1} max={16} onChange={handleGenericChange}/>
+                                <input id="grade_level_upper" name="grade_level_upper" type="number" min={1} max={16} onChange={handleGenericChange}/>
                             </div>
                         </div>
                         
@@ -123,15 +180,15 @@ const UploadPage = () => {
                             <h3 className="input-section-title">Text Information</h3>
                             <div className="input-container">
                                 <label>Text Title<span className="required">*</span></label>
-                                <input name="text_title" type="text" onChange={handleGenericChange}/>
+                                <input id="text_title" name="text_title" type="text" onChange={handleGenericChange}/>
                             </div>
                             <div className="input-container">
                                 <label>Text Author<span className="required">*</span></label>
-                                <input name="text_author" type="text" onChange={handleGenericChange}/>
+                                <input id="text_author" name="text_author" type="text" onChange={handleGenericChange}/>
                             </div>
                             <div className="input-container">
                                 <label>Text Publication Year</label>
-                                <input name="text_publication_year" type="text" onChange={handleGenericChange}/>
+                                <input id="text_publication_year" name="text_publication_year" type="text" onChange={handleGenericChange}/>
                             </div>
                         </div>
 
@@ -187,7 +244,7 @@ const UploadPage = () => {
 
                             
                         </div>
-                        <button onClick={handleUpload}>Upload</button>
+                        {renderUpload()}
                         
                     </div>
                 )}

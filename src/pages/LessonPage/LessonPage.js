@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Document, Page } from "react-pdf";
 import { useParams } from "react-router-dom";
 import { getUrl } from "aws-amplify/storage";
+import { getLessonPlanByID } from "../../util/dynamo";
 import Header from "../../components/Header/Header";
 import "./LessonPage.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -16,6 +17,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 const LessonPage = () => {
     const { lessonID } = useParams();
     const [pdfLink, setPDFLink] = useState(null);
+    const [lessonMetadata, setLessonMetadata] = useState(null);
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
 
@@ -24,16 +26,18 @@ const LessonPage = () => {
     }
 
     useEffect(() => {
-        async function getAndSetPDFLink () {
+        async function getAndSetLessonPlanInfo () {
             try {
-                const urlResult = await getUrl({key: lessonID})
+                const urlResult = await getUrl({key: lessonID});
+                const metadataResult = await getLessonPlanByID(lessonID);
                 setPDFLink(urlResult.url.href)
+                setLessonMetadata(metadataResult);
             } catch (error) {
                 console.error(error)
             }
         }
 
-        getAndSetPDFLink();
+        getAndSetLessonPlanInfo();
     }, [lessonID])
 
     const nextPage = () => {
@@ -48,32 +52,38 @@ const LessonPage = () => {
         }
     }
 
-    function renderPDFViewer() {
-        if(pdfLink) {
-            console.log("PDF link generated: ", pdfLink)
+    const renderLessonInfo = () => {
+        if(pdfLink && lessonMetadata) {
             return (
-                <div>
-                    <Document file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
-                        <Page pageNumber={pageNumber}/>
-                    </Document>
-                    <p>{pageNumber} of {numPages}</p>
-                    <div className="navigation-container">
-                        <button onClick={previousPage}>Previous</button>
-                        <button onClick={nextPage}>Next</button>
+                <div className="lesson-outer-container">
+                    <div className="lesson-metadata-container">
+                        <p className="lesson-title">{lessonMetadata.lesson_title}</p>
+                    </div>
+                
+                    <div className="lesson-pdf-container">
+                        <Document file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
+                            <Page pageNumber={pageNumber}/>
+                        </Document>
+                        <div className="pdf-navigation-container">
+                            <p className="pdf-page-info">{pageNumber} of {numPages}</p>
+                            <div className="navigation-button-container">
+                                <button onClick={previousPage}>Previous</button>
+                                <button onClick={nextPage}>Next</button>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             )
         } else {
-            console.log("Still waiting for PDF link")
-            return <p>Generating PDF link ...</p>
+            return <p>Retrieving lesson plan information ...</p>
         }
     }
     
     return (
         <div className="page-container">
             <Header/>
-            <p>This is the Lesson Page for {lessonID}</p>
-            {renderPDFViewer()}
+            {renderLessonInfo()}
         </div>
     )
 }
