@@ -41,14 +41,12 @@ export const listLessonPlans = async () => {
 
 export const listLessonPlansWithFilter = async (lessonPlanFilter) => {
     try {
-        console.log(lessonPlanFilter);
         const result = await apiClient.graphql({
             query: listLessonPlanMetadata,
             variables: {
                 filter: lessonPlanFilter
             }
         });
-        console.log(result);
         return result;
     } catch (error) {
         console.error(error)
