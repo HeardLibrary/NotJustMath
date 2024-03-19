@@ -1,0 +1,98 @@
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.upload-form h2 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.input-section-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 30%;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.full-tag-input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mid-tag-input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-container input {
+    width: 200px;
+    padding: 5px 8px 5px 12px;
+    border: 1.25px solid lightgray;
+    border-radius: 8px;
+}
+
+.tag-input-container input {
+    padding: 5px 8px 5px 12px;
+    border: 1.25px solid lightgray;
+    border-radius: 8px 0px 0px 8px;
+}
+
+.tag-input-container button {
+    padding: 5px 8px 5px 8px;
+    border: 1.25px solid lightgray;
+    border-radius: 0px 8px 8px 0px;
+    cursor: pointer;
+}
+
+.tag-input-container button:hover {
+    background-color: lightslategrey;
+}
+
+#file-input {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+.required {
+    color: red;
+    margin-left: 4px;
+}
+
+.tag-progress-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.lesson-tag {
+    padding: 12px;
+    margin: 0px 4px 4px 0px;
+    border-radius: 12px;
+    border: 1.25px solid lightslategray;
+}
