@@ -62,7 +62,7 @@ const UploadPage = () => {
                 tagInput.value = null;
                 break;
             default:
-                throw new Error("Shouldn't happen, unknown tag type: ", tagType);
+                throw new Error("Unknown tag type: ", tagType);
         }
     }
 
@@ -139,7 +139,7 @@ const UploadPage = () => {
             case UPLOAD_FAILURE:
                 return <div className="upload-state failure">Upload failed, please make sure all required fields are filled out and try again.</div>
             default:
-                throw new Error("Shouldn't happen, unknown upload state: ", uploadState);
+                throw new Error("Unknown upload state: ", uploadState);
 
         }
     }

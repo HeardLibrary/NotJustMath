@@ -1,0 +1,18 @@
+.search-bar-outer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 36px;
+}
+
+.search-bar-builder-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.builder-dropdown {
+    width: 150px;
+}

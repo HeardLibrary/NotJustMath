@@ -1,4 +1,5 @@
 import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { listLessonPlans } from "../../util/dynamo";
 import LessonPlanResultPreview from "../../components/LessonPlanResultPreview/LessonPlanResultPreview";
@@ -19,7 +20,7 @@ const SearchPage = () => {
     return (
         <div className="page-container">
             <Header/>
-            <p>This is the Search Page</p>
+            <SearchBar/>
             <div className="search-results-container">
                 {lessonPlans.map(lessonPlan => {
                     return <LessonPlanResultPreview key={lessonPlan.id} lessonPlanMetadata={lessonPlan} />
