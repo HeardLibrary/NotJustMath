@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 36px;
+    margin-top: 18px;
 }
 
 .search-bar-builder-container {
@@ -11,8 +11,64 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: lightgray;
+    padding: 24px;
+    border-radius: 24px;
+    border: none;
 }
 
-.builder-dropdown {
-    width: 150px;
+.builder-input {
+    padding: 12px;
+    border: 1.25px solid lightgray;
+    margin: 0;
+}
+
+.search-bar-builder-container button {
+    cursor: pointer;
+}
+
+.search-bar-builder-container button:hover {
+    background-color: lightslategray;
+}
+
+.left {
+    border-radius: 12px 0px 0px 12px;
+}
+
+.right {
+    border-radius: 0px 12px 12px 0px;
+}
+
+.search-bar-filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.filter {
+    margin: 4px;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1.25px solid lightslategray;
+}
+
+.filter-field {
+    font-weight: 600;
+}
+
+.run-query-button {
+    margin-top: 18px;
+    margin-bottom: 36px;
+    font-size: 16px;
+    padding: 12px;
+    border: 1.25px solid lightgray;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.run-query-button:hover {
+    background-color: lightslategray;
 }

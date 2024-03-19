@@ -27,7 +27,7 @@ const fieldOperationOptionMapping = {
 
 const SearchBar = (props) => {
     const [currentQueryBuilderField, setCurrentQueryBuilderField] = useState(LESSON_TITLE_FIELD);
-    const [currentQueryBuilderOperation, setCurrentQueryBuilderOperation] = useState(fieldOperationOptionMapping[currentQueryBuilderField][0]);
+    const [currentQueryBuilderOperation, setCurrentQueryBuilderOperation] = useState();
     const [currentQueryString, setCurrentQueryString] = useState("");
     const [displayFilters, setDisplayFilters] = useState([])
     const [filters, setFilters] = useState([]);
@@ -62,11 +62,26 @@ const SearchBar = (props) => {
             operation: currentQueryBuilderOperation,
             string: currentQueryString
         }
+
+        if (!currentQueryBuilderOperation) {
+            newDisplayFilter.operation = fieldOperationOptionMapping[currentQueryBuilderField][0]
+        }
+
         oldDisplayFilters.push(newDisplayFilter);
         oldFilters.push(buildFilterWithField(currentQueryBuilderField));
         
         setFilters(oldFilters);
         setDisplayFilters(oldDisplayFilters);
+        setCurrentQueryBuilderField(LESSON_TITLE_FIELD);
+        setCurrentQueryBuilderOperation(null);
+        setCurrentQueryString("");
+        resetInputs();
+    }
+
+    const resetInputs = () => {
+        document.getElementById("field-dropdown").value = LESSON_TITLE_FIELD;
+        document.getElementById("operation-dropdown").value = EQUALS_OPERATION;
+        document.getElementById("query-input").value = "";
     }
 
     const executeQuery = async () => {
@@ -82,6 +97,8 @@ const SearchBar = (props) => {
 
         let result = await listLessonPlansWithFilter(filter);
         props.setLessonPlans(result.data.listLessonPlanMetadata.items);
+        setDisplayFilters([]);
+        setFilters([]);
     }
 
     const buildFilterWithField = (field) => {
@@ -121,7 +138,12 @@ const SearchBar = (props) => {
     }
 
     const buildFilter = () => {
-        switch (currentQueryBuilderOperation) {
+        let operation = currentQueryBuilderOperation;
+        if (!operation) {
+            operation = fieldOperationOptionMapping[currentQueryBuilderField][0]
+        }
+
+        switch (operation) {
             case EQUALS_OPERATION:
                 return {
                     eq: currentQueryString
@@ -143,10 +165,16 @@ const SearchBar = (props) => {
         }
     }
 
+    const renderButton = () => {
+        if (filters.length > 0) {
+            return <button onClick={executeQuery} className="run-query-button">Search</button>;
+        }
+    }
+
     return (
         <div className="search-bar-outer-container">
             <div className="search-bar-builder-container">
-                <select className="builder-dropdown" onChange={handleFieldChange}>
+                <select id="field-dropdown" className="builder-input left" onChange={handleFieldChange}>
                     <option value={LESSON_TITLE_FIELD}>{LESSON_TITLE_FIELD}</option>
                     <option value={TEXT_TITLE_FIELD}>{TEXT_TITLE_FIELD}</option>
                     <option value={TEXT_AUTHOR_FIELD}>{TEXT_AUTHOR_FIELD}</option>
@@ -156,19 +184,20 @@ const SearchBar = (props) => {
                     <option value={MATH_STANDARD_TAGS}>{MATH_STANDARD_TAGS}</option>
                 </select>
 
-                <select className="builder-dropdown" onChange={handleOperationChange}>
+                <select id="operation-dropdown" className="builder-input middle" onChange={handleOperationChange}>
                     {renderOperationOptions()}
                 </select>
 
-                <input type="text" onChange={handleQueryStringChange}/>
-                <button onClick={handleAddToQuery}>Add</button>
+                <input id="query-input" className="builder-input middle" type="text" onChange={handleQueryStringChange}/>
+                <button className="builder-input right" onClick={handleAddToQuery}>Add</button>
             </div>
             <div className="search-bar-filter-container">
                 {displayFilters.map(filter => {
-                    return <p key={filter.field+filter.string} className="filter">{filter.field} {filter.operation} {filter.string}</p>
+                    return (
+                        <p key={filter.field+filter.string} className="filter"><span className="filter-field">{filter.field}</span> {filter.operation} "{filter.string}"</p>)
                 })}
             </div>
-            <button onClick={executeQuery} className="run-query-button">Run Query</button>
+            {renderButton()}
         </div>
     );
 }
