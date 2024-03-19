@@ -1,7 +1,6 @@
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { useState, useEffect } from "react";
-import { listLessonPlans } from "../../util/dynamo";
+import { useState } from "react";
 import LessonPlanResultPreview from "../../components/LessonPlanResultPreview/LessonPlanResultPreview";
 import "./SearchPage.css";
 
