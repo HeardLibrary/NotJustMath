@@ -13,4 +13,5 @@ type LessonPlanMetadata @model {
   social_concept_tags: [String]
   standard_tags: [String]
   approval_state: String!
+  lesson_title: String!
 }

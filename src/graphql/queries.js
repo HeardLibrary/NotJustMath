@@ -14,6 +14,7 @@ export const getLessonPlanMetadata = /* GraphQL */ `
       social_concept_tags
       standard_tags
       approval_state
+      lesson_title
       createdAt
       updatedAt
       __typename
@@ -42,6 +43,7 @@ export const listLessonPlanMetadata = /* GraphQL */ `
         social_concept_tags
         standard_tags
         approval_state
+        lesson_title
         createdAt
         updatedAt
         __typename

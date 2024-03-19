@@ -98,6 +98,10 @@ const UploadPage = () => {
                         <div className="input-section-container">
                             <h3 className="input-section-title">Lesson Plan</h3>
                             <div className="input-container">
+                                <label>Lesson Title</label>
+                                <input name="lesson_title" type="text" onChange={handleGenericChange}/>
+                            </div>
+                            <div className="input-container">
                                 <label htmlFor="file-input">Lesson Plan PDF</label>
                                 <input name="file-input" type="file" onChange={handleFileChange} accept=".pdf"/>
                             </div>
@@ -116,7 +120,7 @@ const UploadPage = () => {
                         </div>
                         
                         <div className="input-section-container">
-                            <h3 className="input-section-title">Text Information (optional)</h3>
+                            <h3 className="input-section-title">Text Information</h3>
                             <div className="input-container">
                                 <label>Text Title</label>
                                 <input name="text_title" type="text" onChange={handleGenericChange}/>
