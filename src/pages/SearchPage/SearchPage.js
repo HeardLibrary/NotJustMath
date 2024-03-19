@@ -8,19 +8,10 @@ import "./SearchPage.css";
 const SearchPage = () => {
     const [lessonPlans, setLessonPlans] = useState([]);
 
-    useEffect(() => {
-        async function getAndSetLessonPlans() {
-            const results = await listLessonPlans();
-            setLessonPlans(results);
-        }
-
-        getAndSetLessonPlans();
-    }, [])
-
     return (
         <div className="page-container">
             <Header/>
-            <SearchBar/>
+            <SearchBar setLessonPlans={setLessonPlans}/>
             <div className="search-results-container">
                 {lessonPlans.map(lessonPlan => {
                     return <LessonPlanResultPreview key={lessonPlan.id} lessonPlanMetadata={lessonPlan} />

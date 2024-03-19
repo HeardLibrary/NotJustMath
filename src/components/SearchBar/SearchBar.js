@@ -25,7 +25,7 @@ const fieldOperationOptionMapping = {
     "Math Content Standards": [CONTAINS_OPERATION],
 };
 
-const SearchBar = () => {
+const SearchBar = (props) => {
     const [currentQueryBuilderField, setCurrentQueryBuilderField] = useState(LESSON_TITLE_FIELD);
     const [currentQueryBuilderOperation, setCurrentQueryBuilderOperation] = useState(fieldOperationOptionMapping[currentQueryBuilderField][0]);
     const [currentQueryString, setCurrentQueryString] = useState("");
@@ -38,7 +38,6 @@ const SearchBar = () => {
     }
 
     const handleOperationChange = (event) => {
-        console.log(event.target.value)
         setCurrentQueryBuilderOperation(event.target.value);
     }
 
@@ -49,7 +48,6 @@ const SearchBar = () => {
     const renderOperationOptions = () => {
         if (currentQueryBuilderField != null) {
             return fieldOperationOptionMapping[currentQueryBuilderField].map(operation => {
-                console.log(operation);
                 return <option key={operation} value={operation}>{operation}</option>
             })
         }
@@ -64,7 +62,6 @@ const SearchBar = () => {
             operation: currentQueryBuilderOperation,
             string: currentQueryString
         }
-        console.log(newDisplayFilter)
         oldDisplayFilters.push(newDisplayFilter);
         oldFilters.push(buildFilterWithField(currentQueryBuilderField));
         
@@ -74,19 +71,17 @@ const SearchBar = () => {
 
     const executeQuery = async () => {
         if (filters.length < 1) {
-            // TODO: handle no filter error
             return;
         }
+
         let filter = filters[0]
-        console.log(filter)
         let remainingFilters = filters.slice(1);
         remainingFilters.forEach((curFilter) => {
             filter.and = curFilter;
         })
 
-        console.log(filter);
         let result = await listLessonPlansWithFilter(filter);
-        console.log(result);
+        props.setLessonPlans(result.data.listLessonPlanMetadata.items);
     }
 
     const buildFilterWithField = (field) => {
