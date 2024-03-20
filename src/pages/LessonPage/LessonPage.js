@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Document, Page } from "react-pdf";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getUrl } from "aws-amplify/storage";
 import { getLessonPlanByID } from "../../util/dynamo";
 import Header from "../../components/Header/Header";
@@ -52,12 +52,17 @@ const LessonPage = () => {
         }
     }
 
+    const handlePDFDownload = () => {
+        console.log(pdfLink);
+    }
+
     const renderLessonInfo = () => {
         if(pdfLink && lessonMetadata) {
             return (
                 <div className="lesson-outer-container">
                     <div className="lesson-metadata-container">
                         <p className="lesson-title">{lessonMetadata.lesson_title}</p>
+                        <Link className="download-button" to={pdfLink}>Download</Link>
                     </div>
                 
                     <div className="lesson-pdf-container">
