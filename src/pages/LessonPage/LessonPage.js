@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { getUrl } from "aws-amplify/storage";
 import { getLessonPlanByID } from "../../util/dynamo";
 import Header from "../../components/Header/Header";
-import "./LessonPage.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
+import "./LessonPage.css";
 
 const pdfjs = await import('pdfjs-dist/build/pdf');
 const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.min');
@@ -61,14 +61,14 @@ const LessonPage = () => {
                     </div>
                 
                     <div className="lesson-pdf-container">
-                        <Document file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
+                        <Document classname="pdf-viewer" file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
                             <Page pageNumber={pageNumber}/>
                         </Document>
                         <div className="pdf-navigation-container">
                             <p className="pdf-page-info">{pageNumber} of {numPages}</p>
                             <div className="navigation-button-container">
-                                <button onClick={previousPage}>Previous</button>
-                                <button onClick={nextPage}>Next</button>
+                                <button className="button-half-left" onClick={previousPage}>Previous</button>
+                                <button className="button-half-right"onClick={nextPage}>Next</button>
                             </div>
                         </div>
                         
