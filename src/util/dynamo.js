@@ -3,7 +3,9 @@ import { createLessonPlanMetadata } from "../graphql/mutations.js";
 import { getLessonPlanMetadata, listLessonPlanMetadata } from "../graphql/queries.js";
 
 
-const apiClient = generateClient();
+const apiClient = generateClient({
+        authMode: "apiKey"
+});
 
 export const addLessonPlan = async (lessonPlanMetadata) => {
     await apiClient.graphql({
