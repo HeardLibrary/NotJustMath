@@ -1,6 +1,6 @@
 import { generateClient } from "aws-amplify/api";
 import { createLessonPlanMetadata } from "../graphql/mutations.js";
-import { getLessonPlanMetadata, listLessonPlanMetadata } from "../graphql/queries.js";
+import { getLessonPlanMetadata, listLessonPlanMetadata, searchLessonPlanMetadata } from "../graphql/queries.js";
 
 
 const apiClient = generateClient({
@@ -52,5 +52,21 @@ export const listLessonPlansWithFilter = async (lessonPlanFilter) => {
         return result;
     } catch (error) {
         console.error(error)
+    }
+}
+
+export const searchLessonPlans = async (query) => {
+    try {
+        const result = await apiClient.graphql({
+            query: searchLessonPlanMetadata,
+            variables: {
+                filter: {
+                    match: query
+                }
+            }
+        });
+        return result;
+    } catch (error) {
+        console.log(error)
     }
 }

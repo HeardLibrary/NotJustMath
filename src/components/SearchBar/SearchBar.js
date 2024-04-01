@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { listLessonPlansWithFilter } from "../../util/dynamo";
+import { listLessonPlansWithFilter, searchLessonPlans } from "../../util/dynamo";
 import "./SearchBar.css"
 
 /*const LESSON_TITLE_FIELD = "Lesson Title";
@@ -209,15 +209,15 @@ const SearchBar = (props) => {
         setQueryString(event.target.value);
     }
 
-    const executeQuery = () =>  {
-        // TODO: execute match query w/ fields
+    const executeQuery = async () =>  {
+        let result = await searchLessonPlans(queryString);
+        props.setLessonPlans(result.data.searchLessonPlanMetadata.items);
     }
 
     return (
         <div className="search-bar-container">
             <input id="query-input" className="builder-input left" type="text" onChange={handleQueryStringChange}/>
             <button className="builder-input right" onClick={executeQuery}>Search</button>
-            
         </div>
     )
 }
