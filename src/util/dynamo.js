@@ -61,7 +61,36 @@ export const searchLessonPlans = async (query) => {
             query: searchLessonPlanMetadata,
             variables: {
                 filter: {
-                    match: query
+                    lesson_title: {
+                        match: {
+                            lesson_title: query
+                        }
+                    },
+                    text_title: {
+                        match: {
+                            text_title: query
+                        }
+                    },
+                    text_author: {
+                        match: {
+                            text_author: query
+                        }
+                    },
+                    social_concept_tags: {
+                        match: {
+                            social_concept_tags: query
+                        }
+                    },
+                    math_concept_tags: {
+                        match: {
+                            math_concept_tags: query
+                        }
+                    },
+                    standard_tags: {
+                        match: {
+                            standard_tags: query
+                        }
+                    }
                 }
             }
         });
