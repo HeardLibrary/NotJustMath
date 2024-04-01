@@ -1,4 +1,4 @@
-.search-bar-outer-container {
+/*.search-bar-outer-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -70,4 +70,29 @@
 
 .run-query-button:hover {
     background-color: lightslategray;
+}*/
+
+.search-bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    padding: 24px;
+    border-radius: 24px;
+    border: none;
+}
+
+.builder-input {
+    padding: 12px;
+    border: 1.25px solid lightgray;
+    margin: 0;
+}
+
+.left {
+    border-radius: 12px 0px 0px 12px;
+}
+
+.right {
+    border-radius: 0px 12px 12px 0px;
 }

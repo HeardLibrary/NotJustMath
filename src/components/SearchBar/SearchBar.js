@@ -2,7 +2,7 @@ import { useState } from "react";
 import { listLessonPlansWithFilter } from "../../util/dynamo";
 import "./SearchBar.css"
 
-const LESSON_TITLE_FIELD = "Lesson Title";
+/*const LESSON_TITLE_FIELD = "Lesson Title";
 const TEXT_TITLE_FIELD = "Text Title";
 const TEXT_AUTHOR_FIELD = "Text Author";
 const TEXT_PUBLICATION_FIELD = "Text Publication Year";
@@ -200,6 +200,26 @@ const SearchBar = (props) => {
             {renderButton()}
         </div>
     );
+}*/
+
+const SearchBar = (props) => {
+    const [queryString, setQueryString] = useState("");
+
+    const handleQueryStringChange = (event) => {
+        setQueryString(event.target.value);
+    }
+
+    const executeQuery = () =>  {
+        // TODO: execute match query w/ fields
+    }
+
+    return (
+        <div className="search-bar-container">
+            <input id="query-input" className="builder-input left" type="text" onChange={handleQueryStringChange}/>
+            <button className="builder-input right" onClick={executeQuery}>Search</button>
+            
+        </div>
+    )
 }
 
 export default SearchBar;
