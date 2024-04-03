@@ -10,7 +10,6 @@ const SearchPage = () => {
     return (
         <div className="page-container">
             <Header/>
-            <h2 className="search-page-title">Lesson Plan Search</h2>
             <SearchBar setLessonPlans={setLessonPlans}/>
             <div className="search-results-container">
                 {lessonPlans.map(lessonPlan => {
