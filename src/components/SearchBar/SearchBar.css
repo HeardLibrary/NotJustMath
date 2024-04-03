@@ -89,6 +89,14 @@
     margin: 0;
 }
 
+.query-submit-button {
+    cursor: pointer;
+}
+
+.query-submit-button:hover {
+    background-color: lightslategray;
+}
+
 .left {
     border-radius: 12px 0px 0px 12px;
 }

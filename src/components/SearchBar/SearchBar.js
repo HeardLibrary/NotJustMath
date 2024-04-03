@@ -211,13 +211,14 @@ const SearchBar = (props) => {
 
     const executeQuery = async () =>  {
         let result = await searchLessonPlans(queryString);
+        console.log(result);
         props.setLessonPlans(result.data.searchLessonPlanMetadata.items);
     }
 
     return (
         <div className="search-bar-container">
             <input id="query-input" className="builder-input left" type="text" onChange={handleQueryStringChange}/>
-            <button className="builder-input right" onClick={executeQuery}>Search</button>
+            <button className="query-submit-button builder-input right" onClick={executeQuery}>Search</button>
         </div>
     )
 }
