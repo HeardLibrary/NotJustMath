@@ -52,10 +52,6 @@ const LessonPage = () => {
         }
     }
 
-    const handlePDFDownload = () => {
-        console.log(pdfLink);
-    }
-
     const renderLessonInfo = () => {
         if(pdfLink && lessonMetadata) {
             return (
