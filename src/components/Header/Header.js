@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <div className="header-container">
-            <p>Lesson Plan Database</p>
+            <p>[Not] Just Math</p>
             <div className="header-options">
                 {ALL_PAGES.map(page => {
                     return <button className="header-option"key={page} onClick={() => {navigate(`/${page}`)}}>{page.charAt(0).toUpperCase() + page.slice(1)}</button>
