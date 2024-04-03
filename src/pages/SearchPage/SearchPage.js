@@ -1,11 +1,21 @@
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { useState } from "react";
+import { listLessonPlans } from "../../util/dynamo";
+import { useState, useEffect } from "react";
 import LessonPlanResultPreview from "../../components/LessonPlanResultPreview/LessonPlanResultPreview";
 import "./SearchPage.css";
 
 const SearchPage = () => {
     const [lessonPlans, setLessonPlans] = useState([]);
+    
+    useEffect(() => {
+        async function getAndSetLessonPlans() {
+            const lessonPlans = await listLessonPlans();
+            setLessonPlans(lessonPlans);
+        }
+
+        getAndSetLessonPlans()
+    }, [])
 
     return (
         <div className="page-container">
