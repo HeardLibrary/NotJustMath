@@ -2,6 +2,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { useState } from "react";
 import { uploadData } from "aws-amplify/storage";
 import { addLessonPlan } from "../../util/dynamo";
+import { LessonPlanApprovalStates } from "../../util/constants";
 import Header from "../../components/Header/Header";
 import "./UploadPage.css";
 
@@ -102,7 +103,7 @@ const UploadPage = () => {
             try {
                 const lessonPlanPayload = {
                     id: lessonPlanID,
-                    approval_state: "PENDING",
+                    approval_state: LessonPlanApprovalStates.PENDING,
                     math_concept_tags: mathTags,
                     social_concept_tags: socialTags,
                     standard_tags: standardTags,

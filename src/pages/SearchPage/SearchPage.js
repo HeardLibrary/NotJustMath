@@ -2,6 +2,7 @@ import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { listLessonPlans } from "../../util/dynamo";
 import { useState, useEffect } from "react";
+import { LessonPlanApprovalStates } from "../../util/constants";
 import LessonPlanResultPreview from "../../components/LessonPlanResultPreview/LessonPlanResultPreview";
 import "./SearchPage.css";
 
@@ -11,7 +12,8 @@ const SearchPage = () => {
     useEffect(() => {
         async function getAndSetLessonPlans() {
             const lessonPlans = await listLessonPlans();
-            setLessonPlans(lessonPlans);
+            const activeLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED);
+            setLessonPlans(activeLessonPlans);
         }
 
         getAndSetLessonPlans()
