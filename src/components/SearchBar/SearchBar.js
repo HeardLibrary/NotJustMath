@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { searchLessonPlans, listLessonPlans } from "../../util/dynamo";
+import { searchLessonPlans,  } from "../../util/dynamo";
+import { ApprovalStates } from "../../util/constants";
 import "./SearchBar.css"
 
 const SearchBar = (props) => {
@@ -11,6 +12,9 @@ const SearchBar = (props) => {
 
     const executeQuery = async () =>  {
         let result = await searchLessonPlans(queryString);
+        /*let approvedResults = result.data.searchLessonPlanMetadata.items.filter(lessonPlan => {
+            lessonPlan.approval_state === ApprovalStates.APPROVED
+        })*/
         props.setLessonPlans(result.data.searchLessonPlanMetadata.items);
     }
 

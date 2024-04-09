@@ -4,6 +4,7 @@ import { listLessonPlans } from "../../util/dynamo";
 import { useState, useEffect } from "react";
 import { LessonPlanApprovalStates } from "../../util/constants";
 import LessonPlanResultPreview from "../../components/LessonPlanResultPreview/LessonPlanResultPreview";
+import { ApprovalStates } from "../../util/constants";
 import "./SearchPage.css";
 
 const SearchPage = () => {
@@ -12,8 +13,8 @@ const SearchPage = () => {
     useEffect(() => {
         async function getAndSetLessonPlans() {
             const lessonPlans = await listLessonPlans();
-            const activeLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED);
-            setLessonPlans(activeLessonPlans);
+            /*const activeLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED);*/
+            setLessonPlans(lessonPlans);
         }
 
         getAndSetLessonPlans()
