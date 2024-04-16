@@ -148,108 +148,103 @@ const UploadPage = () => {
     return (
         <div className="page-container">
             <Header/>
-            <Authenticator>
-                {({ _signOut, _user }) => (
-                    <div className="upload-form">
-                        <h2>Lesson Plan Upload</h2>
-                        
-                        <div className="input-section-container">
-                            <h3 className="input-section-title">Lesson Plan</h3>
-                            <div className="input-container">
-                                <label>Lesson Title<span className="required">*</span></label>
-                                <input id="lesson_title" name="lesson_title" type="text" onChange={handleGenericChange}/>
-                            </div>
-                            <div className="input-container">
-                                <label htmlFor="file-input">Lesson Plan PDF<span className="required">*</span></label>
-                                <input id="file-input" name="file-input" type="file" onChange={handleFileChange} accept=".pdf"/>
-                            </div>
-                        </div>
-
-                        <div className="input-section-container">
-                            <h3 className="input-section-title">Grade Level Range</h3>
-                            <div className="input-container">
-                                <label>Grade Level Lower Bound<span className="required">*</span></label>
-                                <input id="grade_level_lower" name="grade_level_lower" type="number" min={1} max={16} onChange={handleGenericChange}/>
-                            </div>
-                            <div className="input-container">
-                                <label>Grade Level Upper Bound<span className="required">*</span></label>
-                                <input id="grade_level_upper" name="grade_level_upper" type="number" min={1} max={16} onChange={handleGenericChange}/>
-                            </div>
-                        </div>
-                        
-                        <div className="input-section-container">
-                            <h3 className="input-section-title">Text Information</h3>
-                            <div className="input-container">
-                                <label>Text Title<span className="required">*</span></label>
-                                <input id="text_title" name="text_title" type="text" onChange={handleGenericChange}/>
-                            </div>
-                            <div className="input-container">
-                                <label>Text Author<span className="required">*</span></label>
-                                <input id="text_author" name="text_author" type="text" onChange={handleGenericChange}/>
-                            </div>
-                            <div className="input-container">
-                                <label>Text Publication Year</label>
-                                <input id="text_publication_year" name="text_publication_year" type="text" onChange={handleGenericChange}/>
-                            </div>
-                        </div>
-
-                        <div className="input-section-container">
-                            <h3 className="input-section-title">Lesson Plan Tags</h3>
-                            <div className="full-tag-input-container">
-                                <div className="mid-tag-input-container">
-                                    <p>Math Concept Tags<span className="required">*</span></p>
-                                    <div className="tag-input-container">
-                                        <input type="text" id={MATH_TAG}/>
-                                        <button name={MATH_TAG} onClick={handleTagSetChange}>Add Tag</button>
-                                    </div>
-                                </div>
-                                
-                                <div className="tag-progress-container">
-                                    {mathTags.map(tag => {
-                                        return <p key={tag} className="lesson-tag">{tag}</p>
-                                    })}
-                                </div>
-                            </div>
-
-                            <div className="full-tag-input-container">
-                                <div className="mid-tag-input-container">
-                                    <p>Social Concept Tags<span className="required">*</span></p>
-                                    <div className="tag-input-container">
-                                        <input type="text" id={SOCIAL_TAG}/>
-                                        <button name={SOCIAL_TAG} onClick={handleTagSetChange}>Add Tag</button>
-                                    </div>
-                                </div>
-                                
-                                <div className="tag-progress-container">
-                                    {socialTags.map(tag => {
-                                        return <p key={tag} className="lesson-tag">{tag}</p>
-                                    })}
-                                </div>
-                            </div>
-
-                            <div className="full-tag-input-container">
-                                <div className="mid-tag-input-container">
-                                    <p>Math Content Standard Tags</p>
-                                    <div className="tag-input-container">
-                                        <input type="text" id={STANDARD_TAG}/>
-                                        <button name={STANDARD_TAG} onClick={handleTagSetChange}>Add Tag</button>
-                                    </div>
-                                </div>
-                                
-                                <div className="tag-progress-container">
-                                    {standardTags.map(tag => {
-                                        return <p key={tag} className="lesson-tag">{tag}</p>
-                                    })}
-                                </div>
-                            </div>
-
-                            
-                        </div>
-                        {renderUpload()}
-                        
+            <div className="upload-form">
+                <h2>Lesson Plan Upload</h2>
+                
+                <div className="input-section-container">
+                    <h3 className="input-section-title">Lesson Plan</h3>
+                    <div className="input-container">
+                        <label>Lesson Title<span className="required">*</span></label>
+                        <input id="lesson_title" name="lesson_title" type="text" onChange={handleGenericChange}/>
                     </div>
-                )}
-            </Authenticator>
+                    <div className="input-container">
+                        <label htmlFor="file-input">Lesson Plan PDF<span className="required">*</span></label>
+                        <input id="file-input" name="file-input" type="file" onChange={handleFileChange} accept=".pdf"/>
+                    </div>
+                </div>
+
+                <div className="input-section-container">
+                    <h3 className="input-section-title">Grade Level Range</h3>
+                    <div className="input-container">
+                        <label>Grade Level Lower Bound<span className="required">*</span></label>
+                        <input id="grade_level_lower" name="grade_level_lower" type="number" min={1} max={16} onChange={handleGenericChange}/>
+                    </div>
+                    <div className="input-container">
+                        <label>Grade Level Upper Bound<span className="required">*</span></label>
+                        <input id="grade_level_upper" name="grade_level_upper" type="number" min={1} max={16} onChange={handleGenericChange}/>
+                    </div>
+                </div>
+                
+                <div className="input-section-container">
+                    <h3 className="input-section-title">Text Information</h3>
+                    <div className="input-container">
+                        <label>Text Title<span className="required">*</span></label>
+                        <input id="text_title" name="text_title" type="text" onChange={handleGenericChange}/>
+                    </div>
+                    <div className="input-container">
+                        <label>Text Author<span className="required">*</span></label>
+                        <input id="text_author" name="text_author" type="text" onChange={handleGenericChange}/>
+                    </div>
+                    <div className="input-container">
+                        <label>Text Publication Year</label>
+                        <input id="text_publication_year" name="text_publication_year" type="text" onChange={handleGenericChange}/>
+                    </div>
+                </div>
+
+                <div className="input-section-container">
+                    <h3 className="input-section-title">Lesson Plan Tags</h3>
+                    <div className="full-tag-input-container">
+                        <div className="mid-tag-input-container">
+                            <p>Math Concept Tags<span className="required">*</span></p>
+                            <div className="tag-input-container">
+                                <input type="text" id={MATH_TAG}/>
+                                <button name={MATH_TAG} onClick={handleTagSetChange}>Add Tag</button>
+                            </div>
+                        </div>
+                        
+                        <div className="tag-progress-container">
+                            {mathTags.map(tag => {
+                                return <p key={tag} className="lesson-tag">{tag}</p>
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="full-tag-input-container">
+                        <div className="mid-tag-input-container">
+                            <p>Social Concept Tags<span className="required">*</span></p>
+                            <div className="tag-input-container">
+                                <input type="text" id={SOCIAL_TAG}/>
+                                <button name={SOCIAL_TAG} onClick={handleTagSetChange}>Add Tag</button>
+                            </div>
+                        </div>
+                        
+                        <div className="tag-progress-container">
+                            {socialTags.map(tag => {
+                                return <p key={tag} className="lesson-tag">{tag}</p>
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="full-tag-input-container">
+                        <div className="mid-tag-input-container">
+                            <p>Math Content Standard Tags</p>
+                            <div className="tag-input-container">
+                                <input type="text" id={STANDARD_TAG}/>
+                                <button name={STANDARD_TAG} onClick={handleTagSetChange}>Add Tag</button>
+                            </div>
+                        </div>
+                        
+                        <div className="tag-progress-container">
+                            {standardTags.map(tag => {
+                                return <p key={tag} className="lesson-tag">{tag}</p>
+                            })}
+                        </div>
+                    </div>
+
+                    
+                </div>
+                {renderUpload()}
+            </div>
         </div>
     )
 }
