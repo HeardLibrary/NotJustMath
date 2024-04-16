@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { searchLessonPlans,  } from "../../util/dynamo";
-import { ApprovalStates } from "../../util/constants";
+import { LessonPlanApprovalStates } from "../../util/constants";
 import "./SearchBar.css"
 
 const SearchBar = (props) => {

@@ -4,7 +4,6 @@ import { listLessonPlans } from "../../util/dynamo";
 import { useState, useEffect } from "react";
 import { LessonPlanApprovalStates } from "../../util/constants";
 import LessonPlanResultPreview from "../../components/LessonPlanResultPreview/LessonPlanResultPreview";
-import { ApprovalStates } from "../../util/constants";
 import "./SearchPage.css";
 
 const SearchPage = () => {
