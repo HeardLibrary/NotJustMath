@@ -1,16 +1,27 @@
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { useState } from "react";
+import { listLessonPlans } from "../../util/dynamo";
+import { useState, useEffect } from "react";
+import { LessonPlanApprovalStates } from "../../util/constants";
 import LessonPlanResultPreview from "../../components/LessonPlanResultPreview/LessonPlanResultPreview";
 import "./SearchPage.css";
 
 const SearchPage = () => {
     const [lessonPlans, setLessonPlans] = useState([]);
+    
+    useEffect(() => {
+        async function getAndSetLessonPlans() {
+            const lessonPlans = await listLessonPlans();
+            /*const activeLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED);*/
+            setLessonPlans(lessonPlans);
+        }
+
+        getAndSetLessonPlans()
+    }, [])
 
     return (
         <div className="page-container">
             <Header/>
-            <h2 className="search-page-title">Lesson Plan Search</h2>
             <SearchBar setLessonPlans={setLessonPlans}/>
             <div className="search-results-container">
                 {lessonPlans.map(lessonPlan => {

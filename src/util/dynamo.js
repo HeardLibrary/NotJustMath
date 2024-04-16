@@ -1,10 +1,10 @@
 import { generateClient } from "aws-amplify/api";
 import { createLessonPlanMetadata } from "../graphql/mutations.js";
-import { getLessonPlanMetadata, listLessonPlanMetadata } from "../graphql/queries.js";
+import { getLessonPlanMetadata, listLessonPlanMetadata, searchLessonPlanMetadata } from "../graphql/queries.js";
 
 
 const apiClient = generateClient({
-        authMode: "apiKey"
+    authMode: 'apiKey',
 });
 
 export const addLessonPlan = async (lessonPlanMetadata) => {
@@ -52,5 +52,64 @@ export const listLessonPlansWithFilter = async (lessonPlanFilter) => {
         return result;
     } catch (error) {
         console.error(error)
+    }
+}
+
+export const searchLessonPlans = async (query) => {
+    try {
+        const result = await apiClient.graphql({
+            query: searchLessonPlanMetadata,
+            variables: {
+                filter: {
+                    or: [
+                        {
+                            lesson_title: {
+                                match: {
+                                    lesson_title: query
+                                }
+                            },
+                        },
+                        { 
+                            text_title: {
+                                match: {
+                                    text_title: query
+                                }
+                            } 
+                        },
+                        { 
+                            text_author: {
+                                match: {
+                                    text_author: query
+                                }
+                            } 
+                        },
+                        { 
+                            social_concept_tags: {
+                                match: {
+                                    social_concept_tags: query
+                                }
+                            } 
+                        },
+                        { 
+                            math_concept_tags: {
+                                match: {
+                                    math_concept_tags: query
+                                }
+                            } 
+                        },
+                        { 
+                            standard_tags: {
+                                match: {
+                                    standard_tags: query
+                                }
+                            } 
+                        },
+                    ]
+                }
+            }
+        });
+        return result;
+    } catch (error) {
+        console.log(error)
     }
 }

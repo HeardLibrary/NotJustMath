@@ -5,13 +5,41 @@
     justify-content: center;
 }
 
-.home-option-container button {
-    padding: 20px;
-    border: 0px;
-    margin: 0px;
-    cursor: pointer;
+.home-splash-logo {
+    margin: 10px;
+    width: 30%;
 }
 
-.home-option-container button:hover {
-    background-color: gray;
+.home-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #8FAEB1;
+    width: 100%;
+    color: white;
+    font-family: Arial;
+    padding-bottom: 30px;
+}
+
+.home-subtitle {
+    font-size: 22px;
+    padding-left: 20px;
+}
+
+.home-paragraph {
+    font-size: 18px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-wrap: wrap;
+}
+
+.home-acknowledgements {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 6px;
+}
+
+.home-acknowledgement {
+    font-size: 18px;
 }

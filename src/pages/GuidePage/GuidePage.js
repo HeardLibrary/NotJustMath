@@ -1,11 +1,13 @@
 import Header from "../../components/Header/Header";
+import LogoWithText from "./assets/logo-with-text.png"
 import "./GuidePage.css";
 
 const GuidePage = () => {
     return (
         <div className="page-container">
             <Header/>
-            <p>This is the Guide Page</p>
+            <img className="guide-logo" src={LogoWithText} alt="Page logo"/>
+            <p className="guide-wip-message">This page is a work in progress ... please check back soon!</p>
         </div>
     )
 }

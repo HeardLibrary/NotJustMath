@@ -8,12 +8,6 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "./LessonPage.css";
 
-const pdfjs = await import('pdfjs-dist/build/pdf');
-const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.min');
-
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
-
-
 const LessonPage = () => {
     const { lessonID } = useParams();
     const [pdfLink, setPDFLink] = useState(null);
@@ -50,10 +44,6 @@ const LessonPage = () => {
         if (pageNumber > 1) {
             setPageNumber(pageNumber-1)
         }
-    }
-
-    const handlePDFDownload = () => {
-        console.log(pdfLink);
     }
 
     const renderLessonInfo = () => {
