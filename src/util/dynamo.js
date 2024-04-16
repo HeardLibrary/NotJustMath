@@ -117,9 +117,6 @@ const searchLessonPlansWithContains = async (query) => {
 
 const searchLessonPlansWithElasticSearch = async (query) => {
     try {
-        // Allows more partial matches with Regex
-        const queryString = `.*${query}.*`
-
         let elasticSearchResults = await apiClient.graphql({
             query: searchLessonPlanMetadata,
             variables: {
@@ -128,35 +125,35 @@ const searchLessonPlansWithElasticSearch = async (query) => {
                         {
                             lesson_title: {
                                 match: {
-                                    lesson_title: queryString
+                                    lesson_title: query
                                 }
                             },
                         },
                         { 
                             text_title: {
                                 match: {
-                                    text_title: queryString
+                                    text_title: query
                                 }
                             } 
                         },
                         { 
                             text_author: {
                                 match: {
-                                    text_author: queryString
+                                    text_author: query
                                 }
                             } 
                         },
                         { 
                             social_concept_tags: {
                                 match: {
-                                    social_concept_tags: queryString
+                                    social_concept_tags: query
                                 }
                             } 
                         },
                         { 
                             math_concept_tags: {
                                 match: {
-                                    math_concept_tags: queryString
+                                    math_concept_tags: query
                                 }
                             } 
                         },
@@ -182,8 +179,12 @@ const searchLessonPlansWithElasticSearch = async (query) => {
 export const searchLessonPlans = async (query) => {
     try {
         // Get results from two sources
-        const containsSearchResults = await searchLessonPlansWithContains(query);
-        const elasticSearchResults = await searchLessonPlansWithElasticSearch(query);
+        const containsQuery = searchLessonPlansWithContains(query);
+        const elasticSearchQuery = searchLessonPlansWithElasticSearch(query);
+
+        const results = await Promise.all([containsQuery, elasticSearchQuery])
+        const containsSearchResults = results[0]
+        const elasticSearchResults = results[1]
 
         // Remove duplicate results
         let totalResults = elasticSearchResults;
@@ -194,6 +195,7 @@ export const searchLessonPlans = async (query) => {
             }
         })
 
+        console.log(totalResults);
         return totalResults;
     } catch (error) {
         console.log(error);
