@@ -1,7 +1,7 @@
 import { generateClient } from "aws-amplify/api";
-import { createLessonPlanMetadata } from "../graphql/mutations.js";
+import { createLessonPlanMetadata, updateLessonPlanMetadata } from "../graphql/mutations.js";
 import { getLessonPlanMetadata, listLessonPlanMetadata, searchLessonPlanMetadata } from "../graphql/queries.js";
-
+import { LessonPlanApprovalStates } from "./constants.js";
 
 const apiClient = generateClient({
     authMode: 'apiKey',
@@ -12,6 +12,30 @@ export const addLessonPlan = async (lessonPlanMetadata) => {
         query: createLessonPlanMetadata,
         variables: {
             input: lessonPlanMetadata
+        }
+    })
+}
+
+export const rejectLessonPlanByID = async (lessonPlanID) => {
+    await apiClient.graphql({
+        query: updateLessonPlanMetadata,
+        variables: {
+            input: {
+                id: lessonPlanID,
+                approval_state: LessonPlanApprovalStates.REJECTED
+            },
+        }
+    })
+}
+
+export const approveLessonPlanByID = async (lessonPlanID) => {
+    await apiClient.graphql({
+        query: updateLessonPlanMetadata,
+        variables: {
+            input: {
+                id: lessonPlanID,
+                approval_state: LessonPlanApprovalStates.APPROVED
+            },
         }
     })
 }
@@ -195,7 +219,6 @@ export const searchLessonPlans = async (query) => {
             }
         })
 
-        console.log(totalResults);
         return totalResults;
     } catch (error) {
         console.log(error);
