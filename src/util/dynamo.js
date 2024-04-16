@@ -24,40 +24,103 @@ export const getLessonPlanByID = async (lessonPlanID) => {
                 id: lessonPlanID
             }
         });
-        return result.data.getLessonPlanMetadata;
+
+        if (result.data) {
+            return result.data.getLessonPlanMetadata;
+        } else {
+            console.error(result.erros)
+            return {};
+        }
+       
     } catch (error) {
         console.error(error);
+        return {};
     }
 }
 
 export const listLessonPlans = async () => {
     try {
-        const result = await apiClient.graphql({
+        let result = await apiClient.graphql({
             query: listLessonPlanMetadata,
         });
-        return result.data.listLessonPlanMetadata.items.filter((item) => item != null);
+
+        if (result.data) {
+            result = result.data.listLessonPlanMetadata.items;
+        } else {
+            console.error(result.errors);
+            result = [];
+        }
+
+        return result.filter((item) => item != null);
     } catch (error) {
         console.error(error)
+        return [];
     }
 }
 
-export const listLessonPlansWithFilter = async (lessonPlanFilter) => {
+const searchLessonPlansWithContains = async (query) => {
     try {
-        const result = await apiClient.graphql({
+        let containsResult = await apiClient.graphql({
             query: listLessonPlanMetadata,
             variables: {
-                filter: lessonPlanFilter
+                filter: {
+                    or: [
+                        {
+                            lesson_title: {
+                                contains: query
+                            },
+                        },
+                        { 
+                            text_title: {
+                                contains: query
+                            } 
+                        },
+                        { 
+                            text_author: {
+                                contains: query
+                            } 
+                        },
+                        { 
+                            social_concept_tags: {
+                                contains: query
+                            } 
+                        },
+                        { 
+                            math_concept_tags: {
+                                contains: query
+                            } 
+                        },
+                        {
+                            standard_tags: {
+                                contains: query
+                            }
+                        },
+                    ]
+                }
             }
         });
-        return result;
+
+
+        if (containsResult.data) {
+            containsResult = containsResult.data.listLessonPlanMetadata.items;
+        } else {
+            console.error(containsResult.errors);
+            containsResult = [];
+        }
+
+        return containsResult;
     } catch (error) {
         console.error(error)
+        return []
     }
 }
 
-export const searchLessonPlans = async (query) => {
+const searchLessonPlansWithElasticSearch = async (query) => {
     try {
-        const result = await apiClient.graphql({
+        // Allows more partial matches with Regex
+        const queryString = `.*${query}.*`
+
+        let elasticSearchResults = await apiClient.graphql({
             query: searchLessonPlanMetadata,
             variables: {
                 filter: {
@@ -65,42 +128,35 @@ export const searchLessonPlans = async (query) => {
                         {
                             lesson_title: {
                                 match: {
-                                    lesson_title: query
+                                    lesson_title: queryString
                                 }
                             },
                         },
                         { 
                             text_title: {
                                 match: {
-                                    text_title: query
+                                    text_title: queryString
                                 }
                             } 
                         },
                         { 
                             text_author: {
                                 match: {
-                                    text_author: query
+                                    text_author: queryString
                                 }
                             } 
                         },
                         { 
                             social_concept_tags: {
                                 match: {
-                                    social_concept_tags: query
+                                    social_concept_tags: queryString
                                 }
                             } 
                         },
                         { 
                             math_concept_tags: {
                                 match: {
-                                    math_concept_tags: query
-                                }
-                            } 
-                        },
-                        { 
-                            standard_tags: {
-                                match: {
-                                    standard_tags: query
+                                    math_concept_tags: queryString
                                 }
                             } 
                         },
@@ -108,8 +164,39 @@ export const searchLessonPlans = async (query) => {
                 }
             }
         });
-        return result;
+
+        if (elasticSearchResults.data) {
+            elasticSearchResults = elasticSearchResults.data.searchLessonPlanMetadata.items;
+        } else {
+            console.error(elasticSearchResults.errors);
+            elasticSearchResults = [];
+        }
+
+        return elasticSearchResults;
     } catch (error) {
-        console.log(error)
+        console.error(error)
+        return [];
+    }
+}
+
+export const searchLessonPlans = async (query) => {
+    try {
+        // Get results from two sources
+        const containsSearchResults = await searchLessonPlansWithContains(query);
+        const elasticSearchResults = await searchLessonPlansWithElasticSearch(query);
+
+        // Remove duplicate results
+        let totalResults = elasticSearchResults;
+        const elasticSearchResultIDs = new Set(elasticSearchResults.map(result => result.id))
+        containsSearchResults.forEach(result => {
+            if (!elasticSearchResultIDs.has(result.id)) {
+                totalResults.push(result);
+            }
+        })
+
+        return totalResults;
+    } catch (error) {
+        console.log(error);
+        return [];
     }
 }

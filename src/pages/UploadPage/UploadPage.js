@@ -1,4 +1,3 @@
-import { Authenticator } from "@aws-amplify/ui-react";
 import { useState } from "react";
 import { uploadData } from "aws-amplify/storage";
 import { addLessonPlan } from "../../util/dynamo";

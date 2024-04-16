@@ -4,16 +4,18 @@ import "./AdminPage.css";
 
 const AdminPage = () => {
     return (
-        <Authenticator>
-            {({ signOut, user }) => (
-                <div className="page-container">
-                    <Header/>
-                    <h3>Admin Page</h3>
-                    <p>Welcome, {user.signInDetails.loginId}</p>
-                    <button onClick={signOut}>Logout</button>
-                </div>
-            )}
-        </Authenticator>
+        <div className="page-container">
+            <Header/>
+            <Authenticator>
+                {({ signOut, _user }) => (
+                    <div className="admin-content-container">
+                        <h3>Admin Page</h3>
+                        <button onClick={signOut}>Logout</button>
+                    </div>
+                )}
+            </Authenticator>
+        </div>
+        
     )
 }
 

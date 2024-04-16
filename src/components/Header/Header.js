@@ -7,6 +7,7 @@ const ALL_PAGES = [
     "guide",
     "search",
     "upload",
+    "admin"
 ]
 
 const Header = () => {
