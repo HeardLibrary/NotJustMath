@@ -12,12 +12,9 @@ const SearchBar = (props) => {
 
     const executeQuery = async () =>  {
         let lessonPlans = await searchLessonPlans(queryString);
-
-        /*let approvedResults = result.data.searchLessonPlanMetadata.items.filter(lessonPlan => {
-            lessonPlan.approval_state === ApprovalStates.APPROVED
-        })*/
+        let approvedResults = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED)
         
-        props.setLessonPlans(lessonPlans);
+        props.setLessonPlans(approvedResults);
     }
 
     return (

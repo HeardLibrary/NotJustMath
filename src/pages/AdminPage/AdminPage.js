@@ -72,11 +72,11 @@ const AdminPage = () => {
             return (
                 <div className="pdf-review-container">
                     <div className="pdf-navigation-container">
-                        <img className="pdf-nav-left" src={NavPrevious}/>
+                        <img className="pdf-nav-left" alt="Navigate back button" src={NavPrevious} onClick={previousPage}/>
                         <Document classname="pdf-viewer" file={currentLessonPlanPDFUrl} onLoadSuccess={onDocumentLoadSuccess}>
-                            <Page pageNumber={pageNumber}/>
+                            <Page pageNumber={pageNumber} onClick={nextPage}/>
                         </Document>
-                        <img className="pdf-nav-right" src={NavNext}/>
+                        <img className="pdf-nav-right" alt="Navigate next button" src={NavNext}/>
                     </div>
                     <div className="pdf-review-options">
                         <p className="pdf-review-option approve" onClick={approveCurrentLessonPlan}>APPROVE</p>
