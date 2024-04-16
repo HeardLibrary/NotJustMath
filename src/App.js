@@ -8,6 +8,11 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import BadRequestPage from "./pages/BadRequestPage/BadRequestPage";
 import './App.css';
 
+const pdfjs = await import('pdfjs-dist/build/pdf');
+const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.min');
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
 const App = () => {
   const router = createBrowserRouter([
     {
