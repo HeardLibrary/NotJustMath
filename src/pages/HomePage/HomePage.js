@@ -1,22 +1,29 @@
-import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import LogoWithText from "./assets/logo-with-text.png";
 import "./HomePage.css";
 
 const HomePage = () => {
-    const navigate = useNavigate();
 
     return (
         <div className="page-container">
             <Header/>
-            <p>Welcome!</p>
-            <div className="home-option-container">
-                <button onClick={() => {navigate("/search")}}>Search</button>
-                <button onClick={() => {navigate("/upload")}}>Upload</button>
+            <img src={LogoWithText} alt="Page logo"/>
+            <div className="home-content-container">
+                <div className="home-content">
+                    <h3>Our purpose</h3>
+                    <h4>Together...</h4>
+                </div>
+                <div className="home-content">
+                    <h3>Our Passion</h3>
+                    <h4>Together...</h4>
+                </div>
+                <div className="home-content">
+                    <h3>Our People</h3>
+                    <h4>Together...</h4>
+                </div>
             </div>
         </div>
     )
-    
-   
 }
 
 export default HomePage;
