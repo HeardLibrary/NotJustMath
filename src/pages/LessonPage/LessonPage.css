@@ -24,6 +24,7 @@
     border: none;
     cursor: pointer;
     background-color: #9ab6b9;
+    color: white;
 }
 
 .navigation-button-container button:hover {
@@ -55,9 +56,13 @@
     margin-left: 24px;
     background-color: #9ab6b9;
     text-decoration: none;
-    color: black
+    color: white;
 }
 
 .download-button:hover {
     background-color: #728b8e;
+}
+
+.pdf-page-info {
+    margin-right: 20px;
 }

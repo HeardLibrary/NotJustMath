@@ -1,7 +1,7 @@
 import { generateClient } from "aws-amplify/api";
-import { createLessonPlanMetadata } from "../graphql/mutations.js";
+import { createLessonPlanMetadata, updateLessonPlanMetadata } from "../graphql/mutations.js";
 import { getLessonPlanMetadata, listLessonPlanMetadata, searchLessonPlanMetadata } from "../graphql/queries.js";
-
+import { LessonPlanApprovalStates } from "./constants.js";
 
 const apiClient = generateClient({
     authMode: 'apiKey',
@@ -16,6 +16,30 @@ export const addLessonPlan = async (lessonPlanMetadata) => {
     })
 }
 
+export const rejectLessonPlanByID = async (lessonPlanID) => {
+    await apiClient.graphql({
+        query: updateLessonPlanMetadata,
+        variables: {
+            input: {
+                id: lessonPlanID,
+                approval_state: LessonPlanApprovalStates.REJECTED
+            },
+        }
+    })
+}
+
+export const approveLessonPlanByID = async (lessonPlanID) => {
+    await apiClient.graphql({
+        query: updateLessonPlanMetadata,
+        variables: {
+            input: {
+                id: lessonPlanID,
+                approval_state: LessonPlanApprovalStates.APPROVED
+            },
+        }
+    })
+}
+
 export const getLessonPlanByID = async (lessonPlanID) => {
     try {
         const result = await apiClient.graphql({
@@ -24,40 +48,100 @@ export const getLessonPlanByID = async (lessonPlanID) => {
                 id: lessonPlanID
             }
         });
-        return result.data.getLessonPlanMetadata;
+
+        if (result.data) {
+            return result.data.getLessonPlanMetadata;
+        } else {
+            console.error(result.erros)
+            return {};
+        }
+       
     } catch (error) {
         console.error(error);
+        return {};
     }
 }
 
 export const listLessonPlans = async () => {
     try {
-        const result = await apiClient.graphql({
+        let result = await apiClient.graphql({
             query: listLessonPlanMetadata,
         });
-        return result.data.listLessonPlanMetadata.items.filter((item) => item != null);
+
+        if (result.data) {
+            result = result.data.listLessonPlanMetadata.items;
+        } else {
+            console.error(result.errors);
+            result = [];
+        }
+
+        return result.filter((item) => item != null);
     } catch (error) {
         console.error(error)
+        return [];
     }
 }
 
-export const listLessonPlansWithFilter = async (lessonPlanFilter) => {
+const searchLessonPlansWithContains = async (query) => {
     try {
-        const result = await apiClient.graphql({
+        let containsResult = await apiClient.graphql({
             query: listLessonPlanMetadata,
             variables: {
-                filter: lessonPlanFilter
+                filter: {
+                    or: [
+                        {
+                            lesson_title: {
+                                contains: query
+                            },
+                        },
+                        { 
+                            text_title: {
+                                contains: query
+                            } 
+                        },
+                        { 
+                            text_author: {
+                                contains: query
+                            } 
+                        },
+                        { 
+                            social_concept_tags: {
+                                contains: query
+                            } 
+                        },
+                        { 
+                            math_concept_tags: {
+                                contains: query
+                            } 
+                        },
+                        {
+                            standard_tags: {
+                                contains: query
+                            }
+                        },
+                    ]
+                }
             }
         });
-        return result;
+
+
+        if (containsResult.data) {
+            containsResult = containsResult.data.listLessonPlanMetadata.items;
+        } else {
+            console.error(containsResult.errors);
+            containsResult = [];
+        }
+
+        return containsResult;
     } catch (error) {
         console.error(error)
+        return []
     }
 }
 
-export const searchLessonPlans = async (query) => {
+const searchLessonPlansWithElasticSearch = async (query) => {
     try {
-        const result = await apiClient.graphql({
+        let elasticSearchResults = await apiClient.graphql({
             query: searchLessonPlanMetadata,
             variables: {
                 filter: {
@@ -97,19 +181,47 @@ export const searchLessonPlans = async (query) => {
                                 }
                             } 
                         },
-                        { 
-                            standard_tags: {
-                                match: {
-                                    standard_tags: query
-                                }
-                            } 
-                        },
                     ]
                 }
             }
         });
-        return result;
+
+        if (elasticSearchResults.data) {
+            elasticSearchResults = elasticSearchResults.data.searchLessonPlanMetadata.items;
+        } else {
+            console.error(elasticSearchResults.errors);
+            elasticSearchResults = [];
+        }
+
+        return elasticSearchResults;
     } catch (error) {
-        console.log(error)
+        console.error(error)
+        return [];
+    }
+}
+
+export const searchLessonPlans = async (query) => {
+    try {
+        // Get results from two sources
+        const containsQuery = searchLessonPlansWithContains(query);
+        const elasticSearchQuery = searchLessonPlansWithElasticSearch(query);
+
+        const results = await Promise.all([containsQuery, elasticSearchQuery])
+        const containsSearchResults = results[0]
+        const elasticSearchResults = results[1]
+
+        // Remove duplicate results
+        let totalResults = elasticSearchResults;
+        const elasticSearchResultIDs = new Set(elasticSearchResults.map(result => result.id))
+        containsSearchResults.forEach(result => {
+            if (!elasticSearchResultIDs.has(result.id)) {
+                totalResults.push(result);
+            }
+        })
+
+        return totalResults;
+    } catch (error) {
+        console.log(error);
+        return [];
     }
 }

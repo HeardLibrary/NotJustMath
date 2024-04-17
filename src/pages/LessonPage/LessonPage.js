@@ -46,32 +46,51 @@ const LessonPage = () => {
         }
     }
 
+    const addPrevValidityClass = () => {
+        if (pageNumber === 1) {
+          return 'invalid';
+        }
+        return '';
+      }
+  
+    const addNextValidityClass = () => {
+    if (pageNumber === numPages) {
+        return 'invalid';
+    }
+    return '';
+    }
+
     const renderLessonInfo = () => {
-        if(pdfLink && lessonMetadata) {
-            return (
-                <div className="lesson-outer-container">
-                    <div className="lesson-metadata-container">
-                        <p className="lesson-title">{lessonMetadata.lesson_title}</p>
-                        <Link className="download-button" to={pdfLink}>Download</Link>
-                    </div>
-                
-                    <div className="lesson-pdf-container">
-                        <Document classname="pdf-viewer" file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
-                            <Page pageNumber={pageNumber}/>
-                        </Document>
-                        <div className="pdf-navigation-container">
-                            <p className="pdf-page-info">{pageNumber} of {numPages}</p>
-                            <div className="navigation-button-container">
-                                <button className="button-half-left" onClick={previousPage}>Previous</button>
-                                <button className="button-half-right"onClick={nextPage}>Next</button>
-                            </div>
+        try {
+            if(pdfLink && lessonMetadata) {
+                return (
+                    <div className="lesson-outer-container">
+                        <div className="lesson-metadata-container">
+                            <p className="lesson-title">{lessonMetadata.lesson_title}</p>
+                            <Link className="download-button" to={pdfLink}>Download</Link>
                         </div>
-                        
+                    
+                        <div className="lesson-pdf-container">
+                            <Document classname="pdf-viewer" file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
+                                <Page pageNumber={pageNumber}/>
+                            </Document>
+                            <div className="pdf-navigation-container">
+                                <p className="pdf-page-info">{pageNumber} of {numPages}</p>
+                                <div className="navigation-button-container">
+                                    <button className={`button-half-left ${addPrevValidityClass()}`} onClick={previousPage}>Previous</button>
+                                    <button className={`button-half-right ${addNextValidityClass()}`}onClick={nextPage}>Next</button>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
-                </div>
-            )
-        } else {
-            return <p>Retrieving lesson plan information ...</p>
+                )
+            } else {
+                return <p>Retrieving lesson plan information ...</p>
+            }
+        } catch (error) {
+            console.log(error);
+            renderLessonInfo();
         }
     }
     

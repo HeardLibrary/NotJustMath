@@ -12,8 +12,9 @@ const SearchPage = () => {
     useEffect(() => {
         async function getAndSetLessonPlans() {
             const lessonPlans = await listLessonPlans();
-            /*const activeLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED);*/
-            setLessonPlans(lessonPlans);
+            const activeLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED);
+            
+            setLessonPlans(activeLessonPlans);
         }
 
         getAndSetLessonPlans()
