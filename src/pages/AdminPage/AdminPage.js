@@ -21,14 +21,14 @@ const AdminPage = () => {
     }
 
     useEffect(() => {
-        async function getAndSetPendingLessonPlans() {
+        const getAndSetPendingLessonPlans = async () => {
             const lessonPlans = await listLessonPlans();
-            const pendingLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.PENDING );
+            const pendingLessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.PENDING);
             setPendingLessonPlans(pendingLessonPlans);
         }
 
         getAndSetPendingLessonPlans();
-    })
+    }, [])
 
     const handleLessonPlanSelection = async (lessonPlanID) => {
         const pdfURL = await getUrl({key: lessonPlanID});
@@ -39,32 +39,69 @@ const AdminPage = () => {
     const approveCurrentLessonPlan = async () => {
         if (currentLessonPlanID) {
             await approveLessonPlanByID(currentLessonPlanID);
-            resetCurrentLessonPlanInfo()
+            resetStateAfterUpdate();
         }
     }
 
     const rejectCurrentLessonPlan = async () => {
         if (currentLessonPlanID) {
             await rejectLessonPlanByID(currentLessonPlanID);
-            resetCurrentLessonPlanInfo()
+            resetStateAfterUpdate();
         }
     }
 
-    const resetCurrentLessonPlanInfo = () => {
+    const resetStateAfterUpdate = () => {
+        const lessonPlanIDToRemove = currentLessonPlanID;
         setCurrentLessonPlanID(null);
         setCurrentLessonPlanPDFUrl(null);
         setNumPages(null);
         setPageNumber(1);
+
+        let lessonPlans = pendingLessonPlans;
+        lessonPlans = lessonPlans.filter(lessonPlan => lessonPlan.id !== lessonPlanIDToRemove);
+        setPendingLessonPlans(lessonPlans)
+    }
+
+    const renderGrades = (lower, upper) => {
+        if (lower === upper) {
+            return `Grade ${lower}`
+        } else {
+            return `Grades ${lower} - ${upper}`
+        }
     }
 
     const renderPendingLessonPlans = () => {
         if (pendingLessonPlans.length > 0) {
             return pendingLessonPlans.map(lessonPlan => {
-                return <p key={lessonPlan.id} onClick={handleLessonPlanSelection.bind(this, lessonPlan.id)}>{lessonPlan.id}</p>
+                return (
+                    <div className="result-preview admin-preview" key={lessonPlan.id} onClick={handleLessonPlanSelection.bind(this, lessonPlan.id)} >
+                        <div className="result-preview-left">
+                            <p className="result-preview-title">{lessonPlan.lesson_title} ({renderGrades(lessonPlan.grade_level_lower, lessonPlan.grade_level_upper)})</p>
+                            <p className="result-preview-tags"><span className="tag-title">Math Concepts:</span> {lessonPlan.math_concept_tags.join(", ")}</p>
+                            <p className="result-preview-tags"><span className="tag-title">Social Concepts:</span> {lessonPlan.social_concept_tags.join(", ")}</p>
+                            <p className="result-preview-tags"><span className="tag-title">Math Content Standards:</span> {lessonPlan.standard_tags.join(", ")}</p>
+                        </div>
+                        <div className="result-preview-right"></div>
+                    </div>
+                )
             })
         } else {
             return <p className="no-pending-message">No pending submissions. Well done!</p>
         }
+    }
+
+    const addPrevValidityClass = () => {
+        if (pageNumber === 1) {
+          return 'invalid';
+        }
+        return '';
+      }
+  
+    const addNextValidityClass = () => {
+    if (pageNumber === numPages) {
+        return 'invalid';
+    }
+    return '';
     }
 
     const renderCurrentPDF = () => {
@@ -72,11 +109,11 @@ const AdminPage = () => {
             return (
                 <div className="pdf-review-container">
                     <div className="pdf-navigation-container">
-                        <img className="pdf-nav-left" alt="Navigate back button" src={NavPrevious} onClick={previousPage}/>
+                        <img className={`pdf-nav pdf-left ${addPrevValidityClass()}`} alt="Navigate back button" src={NavPrevious} onClick={previousPage}/>
                         <Document classname="pdf-viewer" file={currentLessonPlanPDFUrl} onLoadSuccess={onDocumentLoadSuccess}>
-                            <Page pageNumber={pageNumber} onClick={nextPage}/>
+                            <Page pageNumber={pageNumber}/>
                         </Document>
-                        <img className="pdf-nav-right" alt="Navigate next button" src={NavNext}/>
+                        <img className={`pdf-nav pdf-right ${addNextValidityClass()}`} alt="Navigate next button" src={NavNext} onClick={nextPage}/>
                     </div>
                     <div className="pdf-review-options">
                         <p className="pdf-review-option approve" onClick={approveCurrentLessonPlan}>APPROVE</p>
@@ -110,13 +147,18 @@ const AdminPage = () => {
             <Authenticator>
                 {({ signOut, _user }) => (
                     <div className="admin-content-container">
-                        <h3>Review Lesson Plans</h3>
-                        <button onClick={signOut}>Logout</button>
-                        <div className="admin-content-left">
-                            {renderCurrentPDF()}
+                        <div className="admin-sub-header">
+                            <h3>Review Lesson Plans</h3>
+                            <button onClick={signOut}>Logout</button>
                         </div>
-                        <div className="admin-content-right">
-                            {renderPendingLessonPlans()}
+                        <div className="admin-core-container">
+                            <div className="admin-content-left">
+                                {renderCurrentPDF()}
+                            </div>
+                            <div className="admin-content-right">
+                                <h4>Lesson Plan Selection</h4>
+                                {renderPendingLessonPlans()}
+                            </div>
                         </div>
                     </div>
                 )}
