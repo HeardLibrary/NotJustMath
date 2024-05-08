@@ -19,6 +19,7 @@ const SearchBar = (props) => {
         let lessonPlans = await searchLessonPlans(queryString);
         let approvedResults = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED)
         if(queryStringGrade !== ''){
+            const grade = parseInt(queryStringGrade, 10); // Convert the grade input to a number
             approvedResults = approvedResults.filter(lessonPlan => 
                 lessonPlan.grade_level_lower <= grade &&
                 lessonPlan.grade_level_upper >= grade)
