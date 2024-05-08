@@ -13,12 +13,16 @@
 
 .builder-input {
     padding: 10px;
-    border: 3px;
-    margin: 0;
-    width: calc(100% / 3 - 12px);  /* Divides space equally among inputs and accounts for some margin */
+    border: 2px;
+    margin: 2px;
+    width: calc(100% / 2 );  /* Gives half the bar to the search field */
     box-sizing: border-box;  /* Includes padding in the width */
+    height: 40px; /* Sets the height explicitly for cross-browswer consistency */
 }
 
+.dropdown {
+    width: calc(100% / 4 ); /* Sets the dropdown menu space to a quarter of the search bar */
+}
 .query-submit-button {
     cursor: pointer;
     background-color: #9ab6b9;
