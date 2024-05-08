@@ -19,7 +19,6 @@ const SearchBar = (props) => {
         let lessonPlans = await searchLessonPlans(queryString);
         let approvedResults = lessonPlans.filter(lessonPlan => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED)
         if(queryStringGrade !== ''){
-            const grade = parseInt(queryStringGrade, 10); // Convert the grade input to a number
             approvedResults = approvedResults.filter(lessonPlan => 
                 lessonPlan.grade_level_lower <= grade &&
                 lessonPlan.grade_level_upper >= grade)
@@ -32,7 +31,7 @@ const SearchBar = (props) => {
             <div className="search-bar-container">
                 <input id="query-input" className="builder-input left" type="text" placeholder="What are you looking for?" onChange={handleQueryStringChange}/>
                 <select id="query-grade-input" className="builder-input center dropdown" onChange={handleQueryStringChangeGrade}>
-                    <option id ="placeholderdd" value="" disabled selected hidden >Which grade? </option>
+                    <option value="" >Which grade? </option>
                     <option value="0">K</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
