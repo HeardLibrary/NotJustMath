@@ -50,18 +50,6 @@
     border: 1.25px solid lightgray;
     border-radius: 8px;
 }
-.input-container select option {
-    width: 200px;
-    padding: 5px 8px 5px 12px;
-    border: 1.25px solid lightgray;
-    border-radius: 8px;
-}
-#grade_level_upper option {
-    width: 200px;
-    padding: 5px 8px 5px 12px;
-    border: 1.25px solid lightgray;
-    border-radius: 8px;
-}
 
 .tag-input-container input {
     padding: 5px 8px 5px 12px;
@@ -136,3 +124,25 @@
 .failure {
     color: red;
 }
+#grade_level_lower {
+    width: 200px; /* Set a specific width */
+    padding: 5px 8px 5px 8px; /* Add some padding for better text alignment and appearance */
+    border: 1.25px solid lightgray; /* Optional: adds a border */
+    border-radius: 8px; /* Optional: rounds the corners of the dropdown */
+    background-color: white; /* Ensures the background is white */
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+}
+#grade_level_upper {
+    width: 200px; /* Set a specific width */
+    padding: 5px 8px 5px 8px;
+    border: 1.25px solid lightgray;
+    border-radius: 8px 8px 8px 8px;
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+}
+
+.input-container select {
+    width: 100%; /* Makes the select element fill the container */
+}
+
+
+
