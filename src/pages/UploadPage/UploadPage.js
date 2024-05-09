@@ -166,11 +166,25 @@ const UploadPage = () => {
                     <h3 className="input-section-title">Grade Level Range</h3>
                     <div className="input-container">
                         <label>Grade Level Lower Bound<span className="required">*</span></label>
-                        <input id="grade_level_lower" name="grade_level_lower" type="number" min={1} max={16} onChange={handleGenericChange}/>
+                        <select id="grade_level_lower" name="grade_level_lower" type="number" onChange={handleGenericChange}>
+                            <option value="0">K</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                     </div>
                     <div className="input-container">
                         <label>Grade Level Upper Bound<span className="required">*</span></label>
-                        <input id="grade_level_upper" name="grade_level_upper" type="number" min={1} max={16} onChange={handleGenericChange}/>
+                        <select id="grade_level_upper" name="grade_level_upper" type="number" onChange={handleGenericChange}>
+                            <option value="0">K</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                     </div>
                 </div>
                 

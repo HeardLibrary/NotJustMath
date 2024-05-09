@@ -50,6 +50,18 @@
     border: 1.25px solid lightgray;
     border-radius: 8px;
 }
+.input-container select option {
+    width: 200px;
+    padding: 5px 8px 5px 12px;
+    border: 1.25px solid lightgray;
+    border-radius: 8px;
+}
+#grade_level_upper option {
+    width: 200px;
+    padding: 5px 8px 5px 12px;
+    border: 1.25px solid lightgray;
+    border-radius: 8px;
+}
 
 .tag-input-container input {
     padding: 5px 8px 5px 12px;
