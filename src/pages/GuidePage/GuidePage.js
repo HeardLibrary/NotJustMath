@@ -7,7 +7,7 @@ const GuidePage = () => {
         <div className="page-container">
             <Header/>
             <img className="guide-logo" src={LogoWithText} alt="Page logo"/>
-            <p className="guide-wip-message">This page is a work in progress ... please check back soon!</p>
+            <p className="guide-wip-message">This page is a work in progress ... </p>
         </div>
     )
 }
