@@ -10,6 +10,7 @@
     --h3: bold 24px/30px var(--ff);
   
     /* Consider adding dynamic heading size later on*/
+    /* */
   
     --p: 18px/30px var(--ff);
     --subtext: 12px/20px var(--ff);
