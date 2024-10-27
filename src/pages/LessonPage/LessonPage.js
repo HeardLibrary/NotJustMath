@@ -3,7 +3,6 @@ import { Document, Page } from "react-pdf";
 import { useParams, Link } from "react-router-dom";
 import { getUrl } from "aws-amplify/storage";
 import { getLessonPlanByID } from "../../util/dynamo";
-import Header from "../../components/Header/Header";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "./LessonPage.css";
@@ -96,7 +95,6 @@ const LessonPage = () => {
     
     return (
         <div className="page-container">
-            <Header/>
             {renderLessonInfo()}
         </div>
     )

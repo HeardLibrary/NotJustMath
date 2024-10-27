@@ -1,4 +1,3 @@
-import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { listLessonPlans } from "../../util/dynamo";
 import { useState, useEffect } from "react";
@@ -22,7 +21,6 @@ const SearchPage = () => {
 
     return (
         <div className="page-container">
-            <Header/>
             <SearchBar setLessonPlans={setLessonPlans}/>
             <div className="search-results-container">
                 {lessonPlans.map(lessonPlan => {

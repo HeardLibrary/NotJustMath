@@ -1,4 +1,3 @@
-import Header from "../../components/Header/Header";
 import LogoWithText from "./assets/logo-with-text.png";
 import "./HomePage.css";
 
@@ -9,7 +8,6 @@ const HomePage = () => {
 
     return (
         <div className="page-container">
-            <Header/>
             <img className="home-splash-logo" src={LogoWithText} alt="Page logo"/>
             <div className="home-content-container">
                 <div className="home-content">
