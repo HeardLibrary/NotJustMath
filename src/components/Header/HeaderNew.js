@@ -30,7 +30,7 @@ const Header = () => {
             </div>
 
             <div className="header-options-right">
-                <Link className="header-option">
+                <Link className="header-option" to="/admin">
                     Admin Login
                 </Link>
             </div>
