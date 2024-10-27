@@ -1,0 +1,68 @@
+:root {
+    --color-primary: #264653;
+    --color-secondary: #ffffff;
+    --color-terciary: #000000;
+    --color-accent: #E9C46A;
+    --color-accent2: #E76F51;
+    --ff: "Georgia", serif;
+    --h1: bold 54px/64px var(--ff); 
+    --h2: bold 36px/36px var(--ff);
+    --h3: bold 24px/30px var(--ff);
+  
+    /* Consider adding dynamic heading size later on*/
+    /* */
+  
+    --p: 18px/30px var(--ff);
+    --subtext: 12px/20px var(--ff);
+    --shadow: #00000030 0px 0px 10px 0px;
+    --shadowdark: #00000030 0px 5px 10px 5px;
+  }
+  
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  h1 {
+    font: var(--h1);
+    margin-top: 8px;
+  }
+  
+  h2 {
+    font: var(--h2);
+    margin-top: 8px;
+  }
+  
+  h3 {
+    font: var(--h3);
+    margin-top: 8px;
+  }
+  
+  p {
+    font: var(--p);
+    margin-top: 8px;
+  }   
+  
+  .subtext {
+    font: var(--subtext);
+    margin-top: 8px;
+  }
+  
+  
+  .section {
+    margin: 80px auto 0px auto;
+    max-width: 1512px;
+  }
+  
+  .col {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+  }
+  
+  .col * {
+      flex: 1;
+      min-width: 320px;
+  }
