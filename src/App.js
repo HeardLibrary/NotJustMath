@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage/SearchPage';
 import UploadPage from "./pages/UploadPage/UploadPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import BadRequestPage from "./pages/BadRequestPage/BadRequestPage";
+import AboutUs from "./pages/AboutUsPage/AboutUs";
 import './App.css';
 import Header from "./components/Header/HeaderNew";
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/upload" element={<UploadPage />} />
           <Route path="/lesson/:lessonID" element={<LessonPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="*" element={<BadRequestPage />} />
         </Routes>
       </div>

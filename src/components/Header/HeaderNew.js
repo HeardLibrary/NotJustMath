@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "./assets/logoNew.png";
-import "./Header.css";
+import "./HeaderNew.css";
 
 const ALL_PAGES = [
     { name: "Home", path: "home" },
@@ -27,6 +27,12 @@ const Header = () => {
                         {name}
                     </Link>
                 ))}
+            </div>
+
+            <div className="header-options-right">
+                <Link className="header-option">
+                    Admin Login
+                </Link>
             </div>
         </div>
     );
