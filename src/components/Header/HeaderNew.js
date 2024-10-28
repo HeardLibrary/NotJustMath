@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "./assets/logoNew.png";
+import Logo from "./assets/logoNewLong.png";
 import "./HeaderNew.css";
 
 const ALL_PAGES = [
@@ -14,7 +14,6 @@ const Header = () => {
         <div className="header-container">
             <div className="header-title">
                 <img src={Logo} alt="Page logo" />
-                <p>[Not] Just Math</p>
             </div>
 
             <div className="header-options">

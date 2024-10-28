@@ -1,6 +1,7 @@
 import "./AboutUs.css";
 import placeholder from "./assets/img-placeholder.jpeg";
 import arrow from "./assets/down-right.png";
+import deanWager from "./assets/Dr-Wager.jpg";
 
 const AboutUs = () => {
     return (
@@ -28,8 +29,11 @@ const AboutUs = () => {
                 <h2>Meet the Team</h2>
                 <div className="team-grid">
                     <div className="team-member">
-                        <img></img>
-                        <p>Person 1</p>
+                        <img src={deanWager}></img>
+                        <div className="team-member-overlay">
+                            <p>Dr. Wager is the founder of NJM! She is currently the Dean of Undergraduate Academic Affairs at Peabody College, Vanderbilt University. </p>
+                        </div>
+                        <p>Dr. Anita Wager</p>
                     </div>
                     <div className="team-member">
                         <img></img>
