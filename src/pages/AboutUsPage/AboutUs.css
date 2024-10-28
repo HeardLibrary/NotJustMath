@@ -78,7 +78,6 @@
 .team-member {
     position: relative;
     text-align: center;
-    color: #264653;
     transition: transform 0.3s;
     cursor: pointer;
     border: 1px solid;
