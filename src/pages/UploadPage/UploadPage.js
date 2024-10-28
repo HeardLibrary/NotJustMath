@@ -2,7 +2,6 @@ import { useState } from "react";
 import { uploadData } from "aws-amplify/storage";
 import { addLessonPlan } from "../../util/dynamo";
 import { LessonPlanApprovalStates } from "../../util/constants";
-import Header from "../../components/Header/Header";
 import "./UploadPage.css";
 
 const MATH_TAG = "math-tag";
@@ -25,7 +24,7 @@ const UploadPage = () => {
     const handleFileChange = (event) => {
         setFile(event?.target?.files[0]);
         setUploadState(UPLOAD_BEFORE);
-}
+    }
 
     const handleGenericChange = (event) => {
         metadata[event.target.name] = event.target.value;
@@ -36,7 +35,7 @@ const UploadPage = () => {
     const handleTagSetChange = (event) => {
         const tagType = event.target.name;
         let tagInput = document.getElementById(tagType);
-        if(tagInput.value.length < 1) {
+        if (tagInput.value.length < 1) {
             return;
         }
 
@@ -98,7 +97,7 @@ const UploadPage = () => {
                 key: lessonPlanID,
                 data: file
             }).result
-            
+
             try {
                 const lessonPlanPayload = {
                     id: lessonPlanID,
@@ -115,7 +114,7 @@ const UploadPage = () => {
                 setTimeout(() => {
                     setUploadState(UPLOAD_BEFORE)
                 }, 5000);
-            } catch(error) {
+            } catch (error) {
                 console.error("Lesson plan metadata upload failed!");
                 console.error(error);
                 setUploadState(UPLOAD_FAILURE);
@@ -143,22 +142,21 @@ const UploadPage = () => {
 
         }
     }
-   
+
     return (
         <div className="page-container">
-            <Header/>
             <div className="upload-form">
                 <h2>Lesson Plan Upload</h2>
-                
+
                 <div className="input-section-container">
                     <h3 className="input-section-title">Lesson Plan</h3>
                     <div className="input-container">
                         <label>Lesson Title<span className="required">*</span></label>
-                        <input id="lesson_title" name="lesson_title" type="text" onChange={handleGenericChange}/>
+                        <input id="lesson_title" name="lesson_title" type="text" onChange={handleGenericChange} />
                     </div>
                     <div className="input-container">
                         <label htmlFor="file-input">Lesson Plan PDF<span className="required">*</span></label>
-                        <input id="file-input" name="file-input" type="file" onChange={handleFileChange} accept=".pdf"/>
+                        <input id="file-input" name="file-input" type="file" onChange={handleFileChange} accept=".pdf" />
                     </div>
                 </div>
 
@@ -187,20 +185,20 @@ const UploadPage = () => {
                         </select>
                     </div>
                 </div>
-                
+
                 <div className="input-section-container">
                     <h3 className="input-section-title">Text Information</h3>
                     <div className="input-container">
                         <label>Text Title<span className="required">*</span></label>
-                        <input id="text_title" name="text_title" type="text" onChange={handleGenericChange}/>
+                        <input id="text_title" name="text_title" type="text" onChange={handleGenericChange} />
                     </div>
                     <div className="input-container">
                         <label>Text Author<span className="required">*</span></label>
-                        <input id="text_author" name="text_author" type="text" onChange={handleGenericChange}/>
+                        <input id="text_author" name="text_author" type="text" onChange={handleGenericChange} />
                     </div>
                     <div className="input-container">
                         <label>Text Publication Year</label>
-                        <input id="text_publication_year" name="text_publication_year" type="text" onChange={handleGenericChange}/>
+                        <input id="text_publication_year" name="text_publication_year" type="text" onChange={handleGenericChange} />
                     </div>
                 </div>
 
@@ -210,11 +208,11 @@ const UploadPage = () => {
                         <div className="mid-tag-input-container">
                             <p>Math Concept Tags<span className="required">*</span></p>
                             <div className="tag-input-container">
-                                <input type="text" id={MATH_TAG}/>
+                                <input type="text" id={MATH_TAG} />
                                 <button name={MATH_TAG} onClick={handleTagSetChange}>Add Tag</button>
                             </div>
                         </div>
-                        
+
                         <div className="tag-progress-container">
                             {mathTags.map(tag => {
                                 return <p key={tag} className="lesson-tag">{tag}</p>
@@ -226,11 +224,11 @@ const UploadPage = () => {
                         <div className="mid-tag-input-container">
                             <p>Social Concept Tags<span className="required">*</span></p>
                             <div className="tag-input-container">
-                                <input type="text" id={SOCIAL_TAG}/>
+                                <input type="text" id={SOCIAL_TAG} />
                                 <button name={SOCIAL_TAG} onClick={handleTagSetChange}>Add Tag</button>
                             </div>
                         </div>
-                        
+
                         <div className="tag-progress-container">
                             {socialTags.map(tag => {
                                 return <p key={tag} className="lesson-tag">{tag}</p>
@@ -242,11 +240,11 @@ const UploadPage = () => {
                         <div className="mid-tag-input-container">
                             <p>Math Content Standard Tags</p>
                             <div className="tag-input-container">
-                                <input type="text" id={STANDARD_TAG}/>
+                                <input type="text" id={STANDARD_TAG} />
                                 <button name={STANDARD_TAG} onClick={handleTagSetChange}>Add Tag</button>
                             </div>
                         </div>
-                        
+
                         <div className="tag-progress-container">
                             {standardTags.map(tag => {
                                 return <p key={tag} className="lesson-tag">{tag}</p>
@@ -254,7 +252,7 @@ const UploadPage = () => {
                         </div>
                     </div>
 
-                    
+
                 </div>
                 {renderUpload()}
             </div>
