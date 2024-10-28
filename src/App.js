@@ -8,6 +8,7 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import BadRequestPage from "./pages/BadRequestPage/BadRequestPage";
 import AboutUs from "./pages/AboutUsPage/AboutUs";
 import './App.css';
+import './globals.css';
 import Header from "./components/Header/HeaderNew";
 
 const pdfjs = await import('pdfjs-dist/build/pdf');

@@ -1,17 +1,17 @@
 .about-us-page-container {
     justify-content: left;
-    padding: 1rem 2rem 2.5rem 2.5rem;
+    padding: 1.5rem 10%;
 }
 
 .pictures-container {
     display: flex;
     gap: 2rem;
     margin: 2rem 0;
-    /* justify-content: center; */
+    justify-content: space-between;
 }
 
 .picture-large {
-    width: 40%;
+    width: 55%;
     border: 1px solid;
     border-radius: 0.7rem;
     height: 20rem;
@@ -20,7 +20,7 @@
 .picture-small {
     border: 1px solid;
     border-radius: 0.7rem;
-    width: 25%;
+    width: 40%;
     height: 20rem;
 }
 
@@ -33,10 +33,12 @@
 .section-container {
     display: flex;
     align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
 }
 
 .section-title {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: bold;
     flex-basis: 30%;
     display: flex;
@@ -52,7 +54,7 @@
 .section-text {
     font-size: 1.2rem;
     line-height: 1.5;
-    flex-basis: 65%;
+    flex-basis: 70%;
     text-align: justify;
 }
 
@@ -62,10 +64,9 @@
 }
 
 .meet-team-container h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2rem;
-    color: #264653;
 }
 
 .team-grid {
@@ -114,5 +115,10 @@
 }
 
 .team-member:hover .team-member-overlay {
-    opacity: 1; /* Show the overlay when hovering */
+    opacity: 1; 
+}
+
+.team-member-overlay p {
+    font-size: 1rem;
+    line-height: 1.5;
 }

@@ -1,27 +1,32 @@
 import "./AboutUs.css";
-import placeholder from "./assets/img-placeholder.jpeg";
+import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import arrow from "./assets/down-right.png";
 import deanWager from "./assets/Dr-Wager.jpg";
+import learning1 from "./assets/learning1.jpg";
+import learning2 from "./assets/learning2.jpeg";
+import learning3 from "./assets/learning3.jpg";
 
 const AboutUs = () => {
+    const carouselImages = [learning1, learning2, learning3];
     return (
         <div className="about-us-page-container">
             <div className="hero">
-                <h3>Subtile</h3>
-                <h2>Lorem ispum dolor sit amet, consectetur adipiscing elit</h2>
+                <h3>Empowering Education Through Justice</h3>
+                <h2>Integrating Social Justice Themes in K-5 Math Education</h2>
             </div>
 
-            <div className="pictures-container">
+            {/* <div className="pictures-container">
                 <img className="picture-large" src={placeholder}></img>
                 <img className="picture-small" src={placeholder}></img>
-            </div>
+            </div> */}
+            <ImageCarousel images={carouselImages} />
             <div className="text-container">
                 <div className="section-container">
-                    <p className="section-title">Our Purpose<img src={arrow} /></p>
+                    <h3 className="section-title">Our Purpose<img src={arrow} /></h3>
                     <p className="section-text">{PurposeText}</p>
                 </div>
                 <div className="section-container">
-                    <p className="section-title">Our Passion<img src={arrow} /></p>
+                    <h3 className="section-title">Our Passion<img src={arrow} /></h3>
                     <p className="section-text">{PassionText}</p>
                 </div>
             </div>
