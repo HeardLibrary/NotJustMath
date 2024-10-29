@@ -1,6 +1,6 @@
 import "./AboutUs.css";
 import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
-import arrow from "./assets/down-right.png";
+import arrow from "./assets/down-right.svg";
 import deanWager from "./assets/Dr-Wager.jpg";
 import learning1 from "./assets/learning1.jpg";
 import learning2 from "./assets/learning2.jpeg";
@@ -15,10 +15,6 @@ const AboutUs = () => {
                 <h2>Integrating Social Justice Themes in K-5 Math Education</h2>
             </div>
 
-            {/* <div className="pictures-container">
-                <img className="picture-large" src={placeholder}></img>
-                <img className="picture-small" src={placeholder}></img>
-            </div> */}
             <ImageCarousel images={carouselImages} />
             <div className="text-container">
                 <div className="section-container">
