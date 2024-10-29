@@ -5,6 +5,7 @@ import deanWager from "./assets/Dr-Wager.jpg";
 import learning1 from "./assets/learning1.jpg";
 import learning2 from "./assets/learning2.jpeg";
 import learning3 from "./assets/learning3.jpg";
+import portraitPlaceholder from "./assets/portrait-placeholder.jpg";
 
 const AboutUs = () => {
     const carouselImages = [learning1, learning2, learning3];
@@ -37,7 +38,7 @@ const AboutUs = () => {
                         <p>Dr. Anita Wager</p>
                     </div>
                     <div className="team-member">
-                        <img></img>
+                        <img src={portraitPlaceholder}></img>
                         <p>Person 2</p>
                     </div>
                     <div className="team-member">
