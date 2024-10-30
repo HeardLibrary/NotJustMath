@@ -1,27 +1,11 @@
 .about-us-page-container {
     justify-content: left;
-    padding: 1.5rem 10%;
+    padding: 2rem 12%;
+    background-color: var(--color-primary); 
 }
 
-.pictures-container {
-    display: flex;
-    gap: 2rem;
-    margin: 2rem 0;
-    justify-content: space-between;
-}
-
-.picture-large {
-    width: 55%;
-    border: 1px solid;
-    border-radius: 0.7rem;
-    height: 20rem;
-}
-
-.picture-small {
-    border: 1px solid;
-    border-radius: 0.7rem;
-    width: 40%;
-    height: 20rem;
+.hero h3, h2 {
+    color: var(--color-secondary);
 }
 
 .text-container {
@@ -42,13 +26,15 @@
     font-weight: bold;
     flex-basis: 30%;
     display: flex;
-    gap: 0.5rem; 
+    gap: 1rem; 
     text-align: center;
+    color: var(--color-accent);
 }
 
 .section-title img {
-    height: 2.5rem; 
+    height: 1.5rem;
     vertical-align: bottom;
+    filter: invert(97%) sepia(64%) saturate(1158%) hue-rotate(317deg) brightness(94%) contrast(95%);
 }
 
 .section-text {
@@ -56,6 +42,7 @@
     line-height: 1.5;
     flex-basis: 70%;
     text-align: justify;
+    color: var(--color-secondary);
 }
 
 .meet-team-container {
@@ -82,7 +69,9 @@
     cursor: pointer;
     border: 1px solid;
     border-radius: 15px;
+    background-color: var(--color-secondary);
 }
+
 
 .team-member img {
     width: 200px;

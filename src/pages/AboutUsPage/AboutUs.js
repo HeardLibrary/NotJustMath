@@ -1,10 +1,11 @@
 import "./AboutUs.css";
 import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
-import arrow from "./assets/down-right.png";
+import arrow from "./assets/down-right.svg";
 import deanWager from "./assets/Dr-Wager.jpg";
 import learning1 from "./assets/learning1.jpg";
 import learning2 from "./assets/learning2.jpeg";
 import learning3 from "./assets/learning3.jpg";
+import portraitPlaceholder from "./assets/portrait-placeholder.jpg";
 
 const AboutUs = () => {
     const carouselImages = [learning1, learning2, learning3];
@@ -15,10 +16,6 @@ const AboutUs = () => {
                 <h2>Integrating Social Justice Themes in K-5 Math Education</h2>
             </div>
 
-            {/* <div className="pictures-container">
-                <img className="picture-large" src={placeholder}></img>
-                <img className="picture-small" src={placeholder}></img>
-            </div> */}
             <ImageCarousel images={carouselImages} />
             <div className="text-container">
                 <div className="section-container">
@@ -41,7 +38,7 @@ const AboutUs = () => {
                         <p>Dr. Anita Wager</p>
                     </div>
                     <div className="team-member">
-                        <img></img>
+                        <img src={portraitPlaceholder}></img>
                         <p>Person 2</p>
                     </div>
                     <div className="team-member">

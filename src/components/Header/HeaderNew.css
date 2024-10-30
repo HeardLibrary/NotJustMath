@@ -2,10 +2,8 @@
     width: 100%;
     height: 5rem;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
-    /* TODO: use css variable later */
-    background-color: #264653;
+    background-color: var(--color-primary);
 }
 
 .header-container img {
@@ -46,8 +44,9 @@
     width: max-content
 }
 
-.header-option:hover {
-    background-color: #819d9f;
+.header-option.active {
+    background-color: var(--color-accent); /* Highlight color */
+    color: var(--color-terciary);
 }
 
 .header-options-right {
@@ -63,13 +62,10 @@
     font-size: 1.3rem;
     font-weight: 500;
     cursor: pointer;
-    color: #ffffff;
-    background-color: #264653; 
+    color: var(--color-terciary);
+    background-color: var(--color-accent); 
     border-radius: 0.5rem; 
     text-align: center;
+    text-decoration: none;
     
-}
-
-.header-option-admin-login:hover {
-    background-color: #819d9f; 
 }

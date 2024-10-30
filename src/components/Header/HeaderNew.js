@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "./assets/logoNewLong.png";
 import "./HeaderNew.css";
 
@@ -10,6 +10,8 @@ const ALL_PAGES = [
 ];
 
 const Header = () => {
+    const location = useLocation();
+    const currentPath = location.pathname;
     return (
         <div className="header-container">
             <div className="header-title">
@@ -19,7 +21,7 @@ const Header = () => {
             <div className="header-options">
                 {ALL_PAGES.map(({ name, path }) => (
                     <Link
-                        className="header-option"
+                        className={`header-option ${currentPath === `/${path}` ? "active" : ""}`}
                         key={name}
                         to={`/${path}`}
                     >
@@ -29,7 +31,7 @@ const Header = () => {
             </div>
 
             <div className="header-options-right">
-                <Link className="header-option" to="/admin">
+                <Link className="header-option-admin-login" to="/admin">
                     Admin Login
                 </Link>
             </div>
