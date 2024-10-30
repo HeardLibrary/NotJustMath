@@ -6,8 +6,8 @@
 }
 
 .home-splash-logo {
-    margin: 10px;
-    width: 30%;
+    width: 100%;
+
 }
 
 .home-content-container {
@@ -42,4 +42,51 @@
 
 .home-acknowledgement {
     font-size: 18px;
+}
+
+
+.hero-container {
+    position: relative;
+    display: inline-block;
+    width: 100%; 
+}
+
+
+.browse-button {
+    position: absolute;
+    top: 90%; /* Position button vertically within the image */
+    left: 60%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center button exactly */
+    padding: 10px 20px;
+    background-color: #E9C46A;
+    
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.browse-button:hover {
+    background-color: #de9e28;
+}
+
+.learn-button {
+    position: absolute;
+    top: 90%; /* Position button vertically within the image */
+    left: 40%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center button exactly */
+    padding: 10px 20px;
+    background-color: #E9C46A;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.learn-button:hover {
+    background-color: #de9e28;
 }
