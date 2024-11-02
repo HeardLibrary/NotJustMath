@@ -4,7 +4,6 @@ import { Document, Page } from "react-pdf";
 import { getUrl } from "aws-amplify/storage";
 import { listLessonPlans, rejectLessonPlanByID, approveLessonPlanByID } from "../../util/dynamo";
 import { LessonPlanApprovalStates } from "../../util/constants";
-import Header from "../../components/Header/Header";
 import NavPrevious from "./assets/nav-prev.png";
 import NavNext from "./assets/nav-next.png";
 import "./AdminPage.css";
@@ -31,7 +30,7 @@ const AdminPage = () => {
     }, [])
 
     const handleLessonPlanSelection = async (lessonPlanID) => {
-        const pdfURL = await getUrl({key: lessonPlanID});
+        const pdfURL = await getUrl({ key: lessonPlanID });
         setCurrentLessonPlanID(lessonPlanID);
         setCurrentLessonPlanPDFUrl(pdfURL.url.href)
     }
@@ -92,16 +91,16 @@ const AdminPage = () => {
 
     const addPrevValidityClass = () => {
         if (pageNumber === 1) {
-          return 'invalid';
+            return 'invalid';
         }
         return '';
-      }
-  
-    const addNextValidityClass = () => {
-    if (pageNumber === numPages) {
-        return 'invalid';
     }
-    return '';
+
+    const addNextValidityClass = () => {
+        if (pageNumber === numPages) {
+            return 'invalid';
+        }
+        return '';
     }
 
     const renderCurrentPDF = () => {
@@ -109,18 +108,18 @@ const AdminPage = () => {
             return (
                 <div className="pdf-review-container">
                     <div className="pdf-navigation-container">
-                        <img className={`pdf-nav pdf-left ${addPrevValidityClass()}`} alt="Navigate back button" src={NavPrevious} onClick={previousPage}/>
+                        <img className={`pdf-nav pdf-left ${addPrevValidityClass()}`} alt="Navigate back button" src={NavPrevious} onClick={previousPage} />
                         <Document classname="pdf-viewer" file={currentLessonPlanPDFUrl} onLoadSuccess={onDocumentLoadSuccess}>
-                            <Page pageNumber={pageNumber}/>
+                            <Page pageNumber={pageNumber} />
                         </Document>
-                        <img className={`pdf-nav pdf-right ${addNextValidityClass()}`} alt="Navigate next button" src={NavNext} onClick={nextPage}/>
+                        <img className={`pdf-nav pdf-right ${addNextValidityClass()}`} alt="Navigate next button" src={NavNext} onClick={nextPage} />
                     </div>
                     <div className="pdf-review-options">
                         <p className="pdf-review-option approve" onClick={approveCurrentLessonPlan}>APPROVE</p>
                         <p className="pdf-review-option reject" onClick={rejectCurrentLessonPlan}>REJECT</p>
                     </div>
                 </div>
-                
+
             )
         } else if (pendingLessonPlans.length > 0) {
             return (
@@ -131,19 +130,18 @@ const AdminPage = () => {
 
     const nextPage = () => {
         if (pageNumber < numPages) {
-            setPageNumber(pageNumber+1)
+            setPageNumber(pageNumber + 1)
         }
     }
 
     const previousPage = () => {
         if (pageNumber > 1) {
-            setPageNumber(pageNumber-1)
+            setPageNumber(pageNumber - 1)
         }
     }
 
     return (
         <div className="page-container">
-            <Header/>
             <Authenticator>
                 {({ signOut, _user }) => (
                     <div className="admin-content-container">
@@ -164,7 +162,7 @@ const AdminPage = () => {
                 )}
             </Authenticator>
         </div>
-        
+
     )
 }
 
