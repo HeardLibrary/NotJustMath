@@ -3,7 +3,7 @@
     height: 5rem;
     display: flex;
     align-items: center;
-    background-color: var(--color-primary);
+    background-color: var(--color-header);
 }
 
 .header-container img {

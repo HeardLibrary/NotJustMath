@@ -1,4 +1,5 @@
 import { Authenticator } from "@aws-amplify/ui-react";
+import '@aws-amplify/ui-react/styles.css';
 import { useState, useEffect } from "react";
 import { Document, Page } from "react-pdf";
 import { getUrl } from "aws-amplify/storage";
@@ -162,8 +163,7 @@ const AdminPage = () => {
                 )}
             </Authenticator>
         </div>
-
-    )
+    );
 }
 
 export default AdminPage;
