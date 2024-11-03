@@ -1,0 +1,110 @@
+.lesson-plan-view-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.back-button {
+    font-size: 16px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-left: 10%; /* Reset padding if needed */
+    padding-right: auto; /* Remove right alignment if present */
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #ffffff;
+    text-align: left; /* Align text within the button */
+}
+
+.lesson-plan-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Align items at the top */
+}
+
+.pdf-review-container {
+    flex: 1;
+    /* display: flex; */
+    /* flex-direction: column; */
+    background-color: #fff;
+    margin-left: 10%;
+    max-width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 500px;
+}
+
+.pdf-navigation-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 500px; /* Set a height to constrain the PDF viewer */
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.pdf-nav {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.pdf-review-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.pdf-review-option {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.pdf-review-option.approve {
+    background-color: #d4af37;
+    color: #fff;
+}
+
+.pdf-review-option.reject {
+    background-color: #e57373;
+    color: #fff;
+}
+
+.lesson-plan-details {
+    flex: 1;
+    padding: 20px;
+    margin-right: 10%;
+    min-height: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-plan-details h2 {
+    margin-bottom: 15px;
+}
+
+.lesson-plan-details p {
+    margin-bottom: 10px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #4a5568;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    margin: 5px 5px 5px 0;
+}

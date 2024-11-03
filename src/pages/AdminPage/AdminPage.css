@@ -144,3 +144,7 @@
     cursor: pointer;
     width: 80%;
 }
+
+[data-amplify-container] {
+    margin-top: 30%;
+  }

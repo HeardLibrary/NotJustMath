@@ -30,14 +30,14 @@ const App = () => {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/lesson/:lessonID" element={<LessonPage />} />
-            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/*" element={<AdminPage />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="*" element={<BadRequestPage />} />
           </Routes>
         </div>
       </BrowserRouter>
     </Authenticator.Provider>
-  )
-}
+  );
+};
 
 export default App;
