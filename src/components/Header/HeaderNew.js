@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import Logo from "./assets/logoNewLong.png";
 import "./HeaderNew.css";
 
@@ -12,6 +13,8 @@ const ALL_PAGES = [
 const Header = () => {
     const location = useLocation();
     const currentPath = location.pathname;
+    const { user, signOut } = useAuthenticator((context) => [context.user]);
+
     return (
         <div className="header-container">
             <div className="header-title">
@@ -31,9 +34,15 @@ const Header = () => {
             </div>
 
             <div className="header-options-right">
-                <Link className="header-option-admin-login" to="/admin">
-                    Admin Login
-                </Link>
+                {user ? (
+                    <button className="header-option-admin-login" onClick={signOut}>
+                        Admin Logout
+                    </button>
+                ) : (
+                    <Link className="header-option-admin-login" to="/admin">
+                        Admin Login
+                    </Link>
+                )}
             </div>
         </div>
     );
