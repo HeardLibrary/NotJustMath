@@ -19,8 +19,8 @@
 }
 
 .header-container p {
-    font-size: 1.5rem;
-    color: white;
+    font-size: 1rem;
+    color: var(--color-secondary);
     font-family: Arial;
     display: flex;
     justify-content: center;
@@ -34,7 +34,7 @@
 }
 
 .header-option {
-    color: #ffffff;
+    color: var(--color-secondary);
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 500;
@@ -45,8 +45,10 @@
 }
 
 .header-option.active {
-    background-color: var(--color-accent); /* Highlight color */
-    color: var(--color-terciary);
+    background-color: var(--color-accent);
+    color: var(--color-tertiary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
 }
 
 .header-options-right {
@@ -62,10 +64,9 @@
     font-size: 1.3rem;
     font-weight: 500;
     cursor: pointer;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     background-color: var(--color-accent); 
     border-radius: 0.5rem; 
     text-align: center;
     text-decoration: none;
-    
 }

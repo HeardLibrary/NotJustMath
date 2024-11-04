@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./RenderPendingLessonPlans.css";
+import "../RenderPendingLessonPlans/RenderPendingLessonPlans.css";
 
-const RenderPendingLessonPlans = ({ lessonPlans, renderGrades }) => {
+const RenderApprovedLessonPlans = ({ lessonPlans, renderGrades }) => {
     const navigate = useNavigate();
 
     if (lessonPlans.length === 0) {
-        return <p className="no-pending-message">No pending submissions. Well done!</p>;
+        return <p className="no-pending-message">No approved submissions.</p>;
     }
 
     return (
@@ -20,7 +20,7 @@ const RenderPendingLessonPlans = ({ lessonPlans, renderGrades }) => {
                     </div>
                     <button
                         className="view-button"
-                        onClick={() => navigate(`/admin/view/${lessonPlan.id}`)}
+                        onClick={() => navigate(`/admin/approved/view/${lessonPlan.id}`)}
                     >
                         View
                     </button>
@@ -30,4 +30,4 @@ const RenderPendingLessonPlans = ({ lessonPlans, renderGrades }) => {
     );
 };
 
-export default RenderPendingLessonPlans;
+export default RenderApprovedLessonPlans;

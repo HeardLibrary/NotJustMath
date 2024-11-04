@@ -10,101 +10,147 @@
     font-size: 16px;
     margin-top: 40px;
     margin-bottom: 20px;
-    padding-left: 10%; /* Reset padding if needed */
-    padding-right: auto; /* Remove right alignment if present */
+    padding-left: 10%;
     cursor: pointer;
     background: none;
     border: none;
-    color: #ffffff;
-    text-align: left; /* Align text within the button */
+    color: var(--color-secondary);
+    text-align: left;
 }
 
 .lesson-plan-content {
     display: flex;
     gap: 20px;
-    align-items: flex-start; /* Align items at the top */
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
-.pdf-review-container {
-    flex: 1;
-    /* display: flex; */
-    /* flex-direction: column; */
-    background-color: #fff;
-    margin-left: 10%;
+.pdf-wrapper {
+    position: relative;
+    width: 100%;
     max-width: 50%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-height: 500px;
+    margin-left: 10%;
 }
 
 .pdf-navigation-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.pdf-viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 500px; /* Set a height to constrain the PDF viewer */
-    overflow: hidden;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.pdf-nav {
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-}
-
-.pdf-review-options {
     display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-secondary);
+    padding: 8px 0;
+    z-index: 2;
 }
 
-.pdf-review-option {
+.pdf-review-container {
+    margin-top: 40px;
+    background-color: var(--color-secondary);
+    overflow-y: auto;
+    max-height: 80vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.zoom-button {
+    padding: 0 8px;
+    background: none;
+    color: var(--color-secondary);
+    border: none;
+    font-size: 1.2em;
     cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
 }
 
-.pdf-review-option.approve {
-    background-color: #d4af37;
-    color: #fff;
+.page-number-display,
+.zoom-percent-display {
+    margin: 0 10px;
+    font-size: 0.9em;
+    color: var(--color-secondary);
 }
 
-.pdf-review-option.reject {
-    background-color: #e57373;
-    color: #fff;
+.pdf-document {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pdf-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .lesson-plan-details {
-    flex: 1;
-    padding: 20px;
+    flex: 1 1 25%;
+    padding: 40px;
     margin-right: 10%;
     min-height: 100%;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 40%;
+    background-color: var(--color-secondary);
+    border-radius: 10px;
 }
 
-.lesson-plan-details h2 {
+.lesson-plan-details h3 {
     margin-bottom: 15px;
+    color: var(--color-tertiary);
 }
 
 .lesson-plan-details p {
     margin-bottom: 10px;
 }
 
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
 .tag {
-    display: inline-block;
-    background-color: #4a5568;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
     padding: 5px 10px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 0.9em;
-    margin: 5px 5px 5px 0;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.review-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.review-option {
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: medium;
+    color: var(--color-tertiary);
+    text-align: center;
+    padding: 5px 0;
+    width: 100px;
+}
+
+.review-option.approve {
+    background-color: #E9C46A;
+}
+
+.review-option.approve:hover {
+    background-color: #D4A24A;
+}
+
+.review-option.reject {
+    background-color: #E76F51;
+}
+
+.review-option.reject:hover {
+    background-color: #D66545;
 }

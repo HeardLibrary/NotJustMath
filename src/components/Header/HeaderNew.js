@@ -15,6 +15,10 @@ const Header = () => {
     const currentPath = location.pathname;
     const { user, signOut } = useAuthenticator((context) => [context.user]);
 
+    const pagesToDisplay = user
+        ? [...ALL_PAGES, { name: "Admin", path: "admin" }]
+        : ALL_PAGES;
+
     return (
         <div className="header-container">
             <div className="header-title">
@@ -22,21 +26,26 @@ const Header = () => {
             </div>
 
             <div className="header-options">
-                {ALL_PAGES.map(({ name, path }) => (
-                    <Link
-                        className={`header-option ${currentPath === `/${path}` ? "active" : ""}`}
-                        key={name}
-                        to={`/${path}`}
-                    >
-                        {name}
-                    </Link>
-                ))}
+                {pagesToDisplay.map(({ name, path }) => {
+                    const isActive = path === "admin"
+                        ? currentPath.startsWith("/admin")
+                        : currentPath === `/${path}`;
+                    return (
+                        <Link
+                            className={`header-option ${isActive ? "active" : ""}`}
+                            key={name}
+                            to={`/${path}`}
+                        >
+                            {name}
+                        </Link>
+                    );
+                })}
             </div>
 
             <div className="header-options-right">
                 {user ? (
                     <button className="header-option-admin-login" onClick={signOut}>
-                        Admin Logout
+                        Logout
                     </button>
                 ) : (
                     <Link className="header-option-admin-login" to="/admin">

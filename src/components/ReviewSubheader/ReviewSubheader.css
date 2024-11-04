@@ -1,15 +1,15 @@
 .subheader {
     display: flex;
     justify-content: left;
-    background-color: #ffffff; /* White background */
-    border-bottom: 2px solid #ddd; /* Light border at the bottom */
+    background-color: var(--color-secondary);
+    border-bottom: 2px solid #ddd;
     padding: 10px 0;
     width: 100%;
     padding-left: 10%;
   }
   
   .subheader .option {
-    margin: 0 20px; /* Space between options */
+    margin: 0 20px;
     padding: 10px;
     font-weight: bold;
     font-size: 1rem;
@@ -19,7 +19,7 @@
   }
   
   .subheader .option.active {
-    color: #000000; /* Darker color for the active tab */
+    color: var(--color-tertiary);
   }
   
   .subheader .option.active::after {
@@ -27,8 +27,8 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -10px; /* Position underline below the text */
+    bottom: -10px;
     height: 2px;
-    background-color: #000000; /* Underline color */
+    background-color: var(--color-tertiary);
   }
   
