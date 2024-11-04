@@ -143,19 +143,19 @@ const AdminViewLessonPlan = ({ lessonPlans }) => {
                     <h3>{currentLessonPlan.lesson_title} ({renderGrades(currentLessonPlan.grade_level_lower, currentLessonPlan.grade_level_upper)})</h3>
                     <p><strong>Text Title:</strong> {currentLessonPlan.text_title}</p>
                     <p><strong>Text Author:</strong> {currentLessonPlan.text_author}</p>
-                    <p>Math Concept Tags:</p>
+                    <p><strong>Math Concept Tags:</strong></p>
                     <div className="tags-container">
                         {currentLessonPlan.math_concept_tags.map((tag, index) => (
                             <span key={index} className="tag">{tag}</span>
                         ))}
                     </div>
-                    <p>Social Concept Tags:</p>
+                    <p><strong>Social Concept Tags:</strong></p>
                     <div className="tags-container">
                         {currentLessonPlan.social_concept_tags.map((tag, index) => (
                             <span key={index} className="tag">{tag}</span>
                         ))}
                     </div>
-                    <p>Math Content Standard Tags:</p>
+                    <p><strong>Math Content Standard Tags:</strong></p>
                     <div className="tags-container">
                         {currentLessonPlan.standard_tags.map((tag, index) => (
                             <span key={index} className="tag">{tag}</span>

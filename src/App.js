@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Authenticator } from "@aws-amplify/ui-react";
 import GuidePage from './pages/GuidePage/GuidePage';
 import HomePage from './pages/HomePage/HomePage';
-import LessonPage from './pages/LessonPage/LessonPage';
+import LessonPage from './pages/LessonPage/LessonPageNew';
 import SearchPage from './pages/SearchPage/SearchPage';
 import UploadPage from "./pages/UploadPage/UploadPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
@@ -11,11 +11,6 @@ import AboutUs from "./pages/AboutUsPage/AboutUs";
 import './App.css';
 import './globals.css';
 import Header from "./components/Header/HeaderNew";
-
-const pdfjs = await import('pdfjs-dist/build/pdf');
-const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.min');
-
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const App = () => {
   return (

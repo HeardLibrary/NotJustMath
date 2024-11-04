@@ -1,0 +1,80 @@
+.lesson-page-container {
+    background-color: var(--color-primary);
+    padding: 0 5rem ;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0rem 5% 2rem 5%;
+}
+
+.lesson-top-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    color: var(--color-secondary);
+}
+
+.lesson-body-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    height: 100%;
+    width: 100%;
+}
+
+.lesson-pdf-container {
+    border-radius: 1rem;
+    height: 100vh;
+    overflow: hidden;
+    flex: 3;
+    flex-direction: column;
+   
+}
+
+.lesson-info-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: flex-start;
+    flex: 1;
+    background-color: var(--color-secondary);
+}
+
+.label {
+    font-weight: bold;
+    vertical-align: baseline; 
+}
+
+.lesson-info-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+
+.lesson-info-container p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+
+.download-button {
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 16px;
+    background-color: var(--color-accent);
+    text-decoration: none;
+    color: var(--color-text);
+    text-align: center;
+    margin-top: 1rem;
+
+}
+
+.download-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
