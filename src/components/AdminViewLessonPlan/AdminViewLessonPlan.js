@@ -91,6 +91,7 @@ const AdminViewLessonPlan = ({ lessonPlans }) => {
     };
 
     const handleBackNavigation = () => {
+        // Determine back path based on previous state
         if (location.pathname.startsWith("/admin/approved")) {
             navigate("/admin/approved");
         } else if (location.pathname.startsWith("/admin/rejected")) {
@@ -100,11 +101,11 @@ const AdminViewLessonPlan = ({ lessonPlans }) => {
         }
     };
 
+    const showReviewButtons = location.pathname === `/admin/view/${lessonPlanID}`;
+
     if (!currentLessonPlan) {
         return <p>Loading...</p>;
     }
-
-    const isPending = currentLessonPlan.approval_state === "pending";
 
     return (
         <div className="lesson-plan-view-container">
@@ -160,14 +161,12 @@ const AdminViewLessonPlan = ({ lessonPlans }) => {
                             <span key={index} className="tag">{tag}</span>
                         ))}
                     </div>
-                    <div className="review-options">
-                        {isPending && (
-                            <>
-                                <p className="review-option approve" onClick={approveLessonPlan}>Approve</p>
-                                <p className="review-option reject" onClick={rejectLessonPlan}>Reject</p>
-                            </>
-                        )}
-                    </div>
+                    {showReviewButtons && (
+                        <div className="review-options">
+                            <p className="review-option approve" onClick={approveLessonPlan}>Approve</p>
+                            <p className="review-option reject" onClick={rejectLessonPlan}>Reject</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
