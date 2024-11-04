@@ -6,6 +6,10 @@ import { getLessonPlanByID } from "../../util/dynamo";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 // import "react-pdf/dist/esm/Page/TextLayer.css";
 import "./LessonPageNew.css";
+import { Viewer } from '@react-pdf-viewer/core';
+
+// Import the styles
+import '@react-pdf-viewer/core/lib/styles/index.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -28,7 +32,6 @@ const LessonPage = () => {
                 if (urlResult?.url?.href) {
                     setPDFLink(urlResult.url.href);
                     setLessonMetadata(metadataResult);
-                    console.log(metadataResult)
                 } else {
                     console.error("URL not found for the lesson plan.");
                 }
@@ -39,35 +42,7 @@ const LessonPage = () => {
         }
 
         getAndSetLessonPlanInfo();
-    }, [lessonID])
-
-    const nextPage = () => {
-        if (pageNumber < numPages) {
-            setPageNumber(pageNumber + 1)
-        }
-    }
-
-    const previousPage = () => {
-        if (pageNumber > 1) {
-            setPageNumber(pageNumber - 1)
-        }
-    }
-
-    const addPrevValidityClass = () => {
-        if (pageNumber === 1) {
-            return 'invalid';
-        }
-        return '';
-    }
-
-    const addNextValidityClass = () => {
-        if (pageNumber === numPages) {
-            return 'invalid';
-        }
-        return '';
-    }
-
-
+    }, [lessonID]);
 
     const renderLessonInfo = () => {
         try {
@@ -75,22 +50,14 @@ const LessonPage = () => {
                 return (
                     <div>
                         <div className="lesson-top-container">
-                            <h2>{lessonMetadata.lesson_title}</h2>
+                            <h3>{lessonMetadata.lesson_title}</h3>
                         </div>
                         <div className="lesson-body-container">
 
                             <div className="lesson-pdf-container">
-                                <Document className="document" file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
-                                    <Page pageNumber={pageNumber} scale={1.2}
-                                        renderTextLayer={false} renderAnnotationLayer={false} />
-                                </Document>
-                                <div className="pdf-navigation-container">
-                                    <p className="pdf-page-info">{pageNumber} of {numPages}</p>
-                                    <div className="navigation-button-container">
-                                        <button className={`button-half-left ${addPrevValidityClass()}`} onClick={previousPage}>Previous</button>
-                                        <button className={`button-half-right ${addNextValidityClass()}`} onClick={nextPage}>Next</button>
-                                    </div>
-                                </div>
+
+                                <Viewer fileUrl={pdfLink} />
+
                             </div>
                             <div className="lesson-info-container">
                                 <h3>About this Lesson Plan</h3>
