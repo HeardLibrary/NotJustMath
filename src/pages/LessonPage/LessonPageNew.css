@@ -1,0 +1,102 @@
+.lesson-page-container {
+    background-color: var(--color-primary);
+    padding: 0 5rem ;
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson-top-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.pdf-navigation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+}
+
+.navigation-button-container button {
+    padding: 12px;
+    width: 80px;
+    border: none;
+    cursor: pointer;
+    background-color: #9ab6b9;
+    color: white;
+}
+
+.navigation-button-container button:hover {
+    background-color: #728b8e;
+}
+
+.button-half-left {
+    border-radius: 12px 0 0 12px;
+}
+
+.button-half-right {
+    border-radius: 0 12px 12px 0;
+}
+
+.lesson-body-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.lesson-pdf-container {
+    border-radius: 1rem;
+}
+
+.lesson-info-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: flex-start;
+    width: 35%;
+    background-color: var(--color-secondary);
+}
+
+.label {
+    font-weight: bold;
+    vertical-align: baseline; 
+}
+
+.lesson-info-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+
+.lesson-info-container p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+
+.download-button {
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 16px;
+    background-color: var(--color-accent);
+    text-decoration: none;
+    color: var(--color-text);
+    text-align: center;
+    margin-top: 1rem;
+
+}
+
+.download-button:hover {
+    background-color: var(--color-primary);
+}
+
+.pdf-page-info {
+    margin-right: 20px;
+}
