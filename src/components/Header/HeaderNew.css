@@ -45,8 +45,8 @@
 }
 
 .header-option.active {
-    background-color: var(--color-accent);
-    color: var(--color-tertiary);
+    background-color: #5e8c9788;
+    color: var(--color-secondary);
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
 }

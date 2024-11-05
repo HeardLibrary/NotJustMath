@@ -22,7 +22,9 @@ const Header = () => {
     return (
         <div className="header-container">
             <div className="header-title">
-                <img src={Logo} alt="Page logo" />
+                <Link to="/home">
+                    <img src={Logo} alt="Page logo" />
+                </Link>
             </div>
 
             <div className="header-options">
