@@ -1,3 +1,11 @@
+.page-container {
+    background-color: var(--color-primary);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .admin-content-container {
     display: flex;
     flex-direction: column;
@@ -7,132 +15,6 @@
     width: 100%;
 }
 
-.admin-sub-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.admin-sub-header button {
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #9ab6b9;
-    color: white;
-    border: none;
-    padding: 12px 18px 12px 18px;
-    border-radius: 12px;
-}
-
-.admin-sub-header button:hover {
-    background-color: #728b8e;
-}
-
-.admin-sub-header h3 {
-    font-size: 22px;
-    font-weight: 500;
-    margin-right: 25px;
-}
-
-.admin-core-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.admin-content-left {
-    width: 40%;
-    margin-right: 20px;
-}
-
-.admin-content-right {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    max-height: 600px;
-    overflow-y: scroll;
-}
-
-.admin-content-right h4 {
-    font-size: 20px;
-    font-weight: 500;
-}
-
-.pdf-navigation-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.pdf-nav {
-    padding: 40px 2px 40px 2px;
-    background-color: #9ab6b9;
-    cursor: pointer;
-    z-index: 5;
-}
-
-.pdf-left {
-    border-radius: 24px 0 0 24px;
-    margin-right: -8%;
-}
-
-.pdf-right {
-    border-radius: 0 24px 24px 0;
-    margin-left: -8%;
-}
-
-.pdf-nav:hover {
-    background-color: #728b8e;
-}
-
-.invalid {
-    opacity: 30%;
-    cursor: default;
-}
-
-.pdf-review-options {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-top: -30px;
-}
-
-.pdf-review-option {
-    padding: 12px 18px 12px 18px;
-    border-radius: 12px;
-    margin: 12px;
-    cursor: pointer;
-    width: 80px;
-    text-align: center;
-}
-
-.approve {
-    border: 2px solid green;
-    background-color: #9ab6b9;
-    opacity: 75%;
-}
-
-.approve:hover {
-    opacity: 100%;
-}
-
-.reject {
-    border: 2px solid red;
-    background-color: lightcoral;
-    opacity: 75%;
-}
-
-.reject:hover {
-    opacity: 100%;
-}
-
-.admin-preview {
-    cursor: pointer;
-    width: 80%;
+[data-amplify-container] {
+    margin-top: 30%;
 }
