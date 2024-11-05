@@ -41,7 +41,8 @@
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     border: none;
-    width: max-content
+    width: max-content;
+    margin: 0 0.5rem;
 }
 
 .header-option.active {
