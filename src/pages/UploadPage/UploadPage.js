@@ -153,7 +153,7 @@ const UploadPage = () => {
   };
 
   return (
-    <div className="">
+    <div className="page-container">
       {/* page-container */}
       <div className="wrapper">
         <header>
@@ -175,7 +175,7 @@ const UploadPage = () => {
               </h3>
             </div>
             <div className="form-input">
-              <div className="">
+              <div className="input-container">
                 <input
                   id="lesson_title"
                   name="lesson_title"
@@ -183,10 +183,10 @@ const UploadPage = () => {
                   onChange={handleGenericChange}
                 />
               </div>
-              <div className="">
-                {/* <label>
-                  Grade Level Lower Bound<span className="required">*</span>
-                </label> */}
+              <div className="select-row">
+                <label>
+                  From<span className="required">*</span>
+                </label>
                 <select
                   id="grade_level_lower"
                   name="grade_level_lower"
@@ -200,11 +200,9 @@ const UploadPage = () => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-              </div>
-              <div className="">
-                {/* <label>
-                  Grade Level Upper Bound<span className="required">*</span>
-                </label> */}
+                <label>
+                  to<span className="required">*</span>
+                </label>
                 <select
                   id="grade_level_upper"
                   name="grade_level_upper"
@@ -228,7 +226,6 @@ const UploadPage = () => {
               />
             </div>
 
-            {/* span 2? */}
             <div className="form-title">
               <h3>
                 Text Title<span className="required">*</span>
@@ -265,7 +262,6 @@ const UploadPage = () => {
               </div>
             </div>
 
-            {/* span 2? */}
             <div className="form-title">
               <h3>
                 Math Concept Tags<span className="required">*</span>
@@ -275,7 +271,7 @@ const UploadPage = () => {
               </h3>
               <h3>Math Content Standard Tags</h3>
             </div>
-            <div className="form-input">
+            <div className="tag-input">
               <div className="full-tag-input-container">
                 <div className="mid-tag-input-container">
                   <div className="tag-input-container">
