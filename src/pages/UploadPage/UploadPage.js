@@ -254,6 +254,7 @@ const UploadPage = () => {
               </div>
               <div className="input-container">
                 <input
+                  className="file-upload"
                   id="text_publication_year"
                   name="text_publication_year"
                   type="text"
