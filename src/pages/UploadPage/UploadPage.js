@@ -180,6 +180,7 @@ const UploadPage = () => {
                   id="lesson_title"
                   name="lesson_title"
                   type="text"
+                  placeholder="Lesson Title"
                   onChange={handleGenericChange}
                 />
               </div>
@@ -241,6 +242,7 @@ const UploadPage = () => {
                   id="text_title"
                   name="text_title"
                   type="text"
+                  placeholder="Text Title"
                   onChange={handleGenericChange}
                 />
               </div>
@@ -249,6 +251,7 @@ const UploadPage = () => {
                   id="text_author"
                   name="text_author"
                   type="text"
+                  placeholder="Text Author"
                   onChange={handleGenericChange}
                 />
               </div>
@@ -258,6 +261,7 @@ const UploadPage = () => {
                   id="text_publication_year"
                   name="text_publication_year"
                   type="text"
+                  placeholder="Publication Year"
                   onChange={handleGenericChange}
                 />
               </div>
@@ -276,7 +280,7 @@ const UploadPage = () => {
               <div className="full-tag-input-container">
                 <div className="mid-tag-input-container">
                   <div className="tag-input-container">
-                    <input type="text" id={MATH_TAG} />
+                    <input type="text" id={MATH_TAG} placeholder="Add a tag"/>
                     <button name={MATH_TAG} onClick={handleTagSetChange}>
                       Add Tag
                     </button>
@@ -297,7 +301,7 @@ const UploadPage = () => {
               <div className="full-tag-input-container">
                 <div className="mid-tag-input-container">
                   <div className="tag-input-container">
-                    <input type="text" id={SOCIAL_TAG} />
+                    <input type="text" id={SOCIAL_TAG} placeholder="Add a tag"/>
                     <button name={SOCIAL_TAG} onClick={handleTagSetChange}>
                       Add Tag
                     </button>
@@ -318,7 +322,7 @@ const UploadPage = () => {
               <div className="full-tag-input-container">
                 <div className="mid-tag-input-container">
                   <div className="tag-input-container">
-                    <input type="text" id={STANDARD_TAG} />
+                    <input type="text" id={STANDARD_TAG} placeholder="Add a tag"/>
                     <button name={STANDARD_TAG} onClick={handleTagSetChange}>
                       Add Tag
                     </button>
