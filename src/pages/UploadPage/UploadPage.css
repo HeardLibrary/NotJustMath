@@ -119,15 +119,16 @@
   margin-bottom: 36px;
   font-size: 16px;
   padding: 12px;
-  border: 1.25px solid lightgray;
   border-radius: 12px;
   cursor: pointer;
   background-color: var(--color-accent);
   width: 100%;
+  border: none;
+  box-shadow: -3px 0px 6px rgba(0, 0, 0, 0.3);
 }
 
 .upload-submit-button:hover {
-  background-color: var(--color-accent2);
+  background-color: var(--color-buttonhover);
 }
 
 .upload-state {
@@ -164,10 +165,20 @@
   flex-direction: column;
   justify-content: space-evenly;
   text-align: right;
+  font-family: sans-serif;
 }
+
+
+#title h1 {
+  font-family: sans-serif;
+}
+
 
 .form-title h3 {
   margin-top: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+  text-align: left;
 }
 
 .form-input {
