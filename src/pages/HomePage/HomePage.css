@@ -49,6 +49,10 @@
     position: relative;
     display: inline-block;
     width: 100%; 
+    display: flex; /* Use flexbox for the button container */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 20px; /* Add space between the buttons */
+    margin-top: 20px; /* Optional, to add space above the buttons */
 }
 
 
@@ -78,7 +82,7 @@
     left: 40%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Center button exactly */
     padding: 10px 20px;
-    background-color: #E9C46A;
+    background-color: transparent;
     color: black;
     border: none;
     border-radius: 5px;

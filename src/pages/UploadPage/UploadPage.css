@@ -164,10 +164,20 @@
   flex-direction: column;
   justify-content: space-evenly;
   text-align: right;
+  font-family: sans-serif;
 }
+
+
+#title h1 {
+  font-family: sans-serif;
+}
+
 
 .form-title h3 {
   margin-top: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+  text-align: left;
 }
 
 .form-input {
