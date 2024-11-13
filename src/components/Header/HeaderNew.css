@@ -71,3 +71,7 @@
     text-align: center;
     text-decoration: none;
 }
+
+.header-option-admin-login:hover {
+    background-color: var(--color-buttonhover);
+}
