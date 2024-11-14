@@ -3,7 +3,7 @@ import { FaSearch, FaPlusCircle } from "react-icons/fa";
 import { LessonPlanApprovalStates } from "../../util/constants";
 import "./SearchBar.css";
 import { useNavigate } from "react-router-dom";
-import { searchLessonPlans } from "../../util/dynamo"; 
+import { searchLessonPlans } from "../../util/dynamo";
 
 const SearchBar = ({ setLessonPlans, searchQuery, setSearchQuery }) => {
     const [queryStringGrade, setQueryStringGrade] = useState("");
@@ -11,7 +11,7 @@ const SearchBar = ({ setLessonPlans, searchQuery, setSearchQuery }) => {
 
     useEffect(() => {
         if (searchQuery) {
-            executeQuery(); 
+            executeQuery();
         }
     }, [searchQuery]);
 
@@ -29,8 +29,8 @@ const SearchBar = ({ setLessonPlans, searchQuery, setSearchQuery }) => {
     };
 
     const executeQuery = async () => {
-        let lessonPlans = await searchLessonPlans(searchQuery); 
-        lessonPlans = Array.isArray(lessonPlans) ? lessonPlans : []; 
+        let lessonPlans = await searchLessonPlans(searchQuery);
+        lessonPlans = Array.isArray(lessonPlans) ? lessonPlans : [];
 
         let approvedResults = lessonPlans.filter(
             (lessonPlan) => lessonPlan.approval_state === LessonPlanApprovalStates.APPROVED
@@ -45,7 +45,7 @@ const SearchBar = ({ setLessonPlans, searchQuery, setSearchQuery }) => {
             );
         }
 
-        setLessonPlans(approvedResults); 
+        setLessonPlans(approvedResults);
     };
 
     return (

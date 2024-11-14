@@ -4,12 +4,10 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import { listLessonPlans } from "../../util/dynamo";
 import { LessonPlanApprovalStates } from "../../util/constants";
 import "./SearchPage.css";
-import { useNavigate } from 'react-router-dom';
 
 const SearchPage = () => {
     const [lessonPlans, setLessonPlans] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(""); // State for the search query
-    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         async function getAndSetLessonPlans() {
@@ -37,6 +35,8 @@ const SearchPage = () => {
                 record.grade_level_lower === record.grade_level_upper
                     ? `${record.grade_level_lower}`
                     : `${record.grade_level_lower} - ${record.grade_level_upper}`,
+            sorter: (a, b) => a.grade_level_lower - b.grade_level_lower, // Sort by grade_level_lower
+            sortDirections: ['ascend', 'descend'],
         },
         {
             title: 'Math Concepts',
@@ -91,17 +91,15 @@ const SearchPage = () => {
         <div className="page-container">
             <SearchBar
                 setLessonPlans={setLessonPlans}
-                searchQuery={searchQuery} // Pass the search query to SearchBar
-                setSearchQuery={setSearchQuery} // Pass the setter to update it
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
             />
             <Table
                 columns={columns}
                 dataSource={lessonPlans}
                 rowKey={(record) => record.id}
                 className="search-results-container"
-            // onRow={(record) => ({
-            //     onClick: () => navigate(`/lesson/${record.id}`),
-            // })}
+                onChange={(pagination, filters, sorter) => console.log('Table params:', pagination, filters, sorter)}
             />
         </div>
     );
