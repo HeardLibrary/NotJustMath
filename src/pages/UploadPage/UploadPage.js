@@ -218,13 +218,15 @@ const UploadPage = () => {
                   <option value="5">5</option>
                 </select>
               </div>
-              <input
-                id="file-input"
-                name="file-input"
-                type="file"
-                onChange={handleFileChange}
-                accept=".pdf"
-              />
+              <label for="file-input" class="custom-file-input">
+                Upload a file
+                <input
+                  id="file-input"
+                  type="file"
+                  onChange={handleFileChange}
+                  accept=".pdf"
+                />
+              </label>
             </div>
 
             <div className="form-title">
@@ -280,7 +282,7 @@ const UploadPage = () => {
               <div className="full-tag-input-container">
                 <div className="mid-tag-input-container">
                   <div className="tag-input-container">
-                    <input type="text" id={MATH_TAG} placeholder="Add a tag"/>
+                    <input type="text" id={MATH_TAG} placeholder="Add a tag" />
                     <button name={MATH_TAG} onClick={handleTagSetChange}>
                       Add Tag
                     </button>
@@ -301,7 +303,11 @@ const UploadPage = () => {
               <div className="full-tag-input-container">
                 <div className="mid-tag-input-container">
                   <div className="tag-input-container">
-                    <input type="text" id={SOCIAL_TAG} placeholder="Add a tag"/>
+                    <input
+                      type="text"
+                      id={SOCIAL_TAG}
+                      placeholder="Add a tag"
+                    />
                     <button name={SOCIAL_TAG} onClick={handleTagSetChange}>
                       Add Tag
                     </button>
@@ -322,7 +328,11 @@ const UploadPage = () => {
               <div className="full-tag-input-container">
                 <div className="mid-tag-input-container">
                   <div className="tag-input-container">
-                    <input type="text" id={STANDARD_TAG} placeholder="Add a tag"/>
+                    <input
+                      type="text"
+                      id={STANDARD_TAG}
+                      placeholder="Add a tag"
+                    />
                     <button name={STANDARD_TAG} onClick={handleTagSetChange}>
                       Add Tag
                     </button>

@@ -155,7 +155,7 @@
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  column-gap: 1rem;
   margin-top: 24px;
   height: 800px;
 }
@@ -193,13 +193,24 @@
   width: 100%;
 }
 .form-input input::placeholder {
-    color:var(--color-tertiary);
-    opacity: 0.5;
-    font: var(--ff);
-  }
+  color: var(--color-tertiary);
+  opacity: 0.5;
+  font: var(--ff);
+}
 
-#file-input {
-  height: 60px;
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-input {
+  border: 1px solid #ccc;
+  background-color: var(--color-accent);
+  color: black;
+  border-radius: 12px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  text-align: center;
 }
 
 #form-upload {
@@ -249,7 +260,7 @@
 }
 
 .file-upload {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
