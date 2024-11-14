@@ -8,4 +8,9 @@
     padding: 0 40px 0 40px;
     max-height: 600px;
     overflow-y: scroll;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.search-results-container:hover {
+    cursor: pointer;
 }

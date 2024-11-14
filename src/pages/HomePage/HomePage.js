@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
 import Hero from "./assets/nbthero.png";
 import "./HomePage.css";
-import SearchPage from "../SearchPage/SearchPage";
+import SearchPage from "../SearchPage/SearchPage2";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
