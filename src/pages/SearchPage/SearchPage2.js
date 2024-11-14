@@ -31,10 +31,11 @@ const SearchPage = () => {
         {
             title: 'Grade',
             key: 'grade_level',
-            render: (_, record) =>
-                record.grade_level_lower === record.grade_level_upper
-                    ? `${record.grade_level_lower}`
-                    : `${record.grade_level_lower} - ${record.grade_level_upper}`,
+            render: (_, record) => {
+                let gradeLower = record.grade_level_lower === 0 ? "K" : record.grade_level_lower;
+                let gradeUpper = record.grade_level_upper === 0 ? "K" : record.grade_level_upper;
+                return gradeLower === gradeUpper ? `${gradeLower}` : `${gradeLower} - ${gradeUpper}`;
+            },
             sorter: (a, b) => a.grade_level_lower - b.grade_level_lower, // Sort by grade_level_lower
             sortDirections: ['ascend', 'descend'],
         },
