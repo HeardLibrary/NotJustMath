@@ -2,27 +2,37 @@ import { FaArrowRight } from "react-icons/fa";
 import Hero from "./assets/nbthero.png";
 import "./HomePage.css";
 import SearchPage from "../SearchPage/SearchPage";
-import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const HomePage = () => {
-    const navigate = useNavigate(); // Initialize useNavigate hook
+    const searchPageRef = useRef(null); // Create a ref for SearchPage
 
     const navigateToAbout = () => {
-        navigate("/about-us"); // Navigate to the About page
+        window.location.href = "/about-us";
+    };
+
+    const scrollToLibrary = () => {
+        searchPageRef.current.scrollIntoView({ behavior: "smooth" }); // Scroll to SearchPage
     };
 
     return (
         <div className="page-container">
             <div className="hero-container">
                 <img className="home-splash-logo" src={Hero} alt="Page logo" />
-                <button className="browse-button">Browse Our Library</button>
+                <button className="browse-button" onClick={scrollToLibrary}>
+                    Browse Our Library
+                </button>
                 <button className="learn-button" onClick={navigateToAbout}>
                     Learn More About Us <FaArrowRight className="arrow-icon" />
                 </button>
             </div>
-            <SearchPage />
+            
+            {/* Reference SearchPage section */}
+            <div ref={searchPageRef}>
+                <SearchPage />
+            </div>
         </div>
     );
-}
+};
 
 export default HomePage;
