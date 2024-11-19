@@ -1,20 +1,20 @@
 .page-container {
-    background-color: var(--color-primary);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--color-primary);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .admin-content-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    font-family: Arial;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: var(--ff);
+  width: 100%;
 }
 
 [data-amplify-container] {
-    margin-top: 30%;
+  margin-top: 30%;
 }
