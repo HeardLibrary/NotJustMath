@@ -1,109 +1,109 @@
 .new-search-bar-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 45px;
-    width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .new-upper-search-text {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .new-search-header {
-    font-size: 24px;
-    color: var(--color-secondary);
-    margin: 0;
-    line-height: 1;
-    font-family: sans-serif;
-    font-size: 30px;
+  font-size: 24px;
+  color: var(--color-secondary);
+  margin: 0;
+  line-height: 1;
+  font-family: var(--ff);
+  font-size: 30px;
 }
 
 .add-icon {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .new-upper-search-text button {
-    height: 45px;
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    padding: 8px 16px;
-    background-color: var(--color-accent);
-    color: var(--color-tertiary);
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
+  height: 45px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: var(--color-accent);
+  color: var(--color-tertiary);
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
 }
 
 .new-upper-search-text button:hover {
-    background-color: var(--color-buttonhover);
+  background-color: var(--color-buttonhover);
 }
 
 .new-search-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .new-builder-input-left {
-    background-color: var(--color-secondary);
-    border: 1px solid #ddd;
-    border-radius: 22px;
-    padding: 10px;
-    margin-right: 100px;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    font-size: 15px;
-    height: 45px;
-    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
-    flex-grow: 1;
-    min-width: 200px;
+  background-color: var(--color-secondary);
+  border: 1px solid #ddd;
+  border-radius: 22px;
+  padding: 10px;
+  margin-right: 100px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 15px;
+  height: 45px;
+  box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
+  flex-grow: 1;
+  min-width: 200px;
 }
 
 .search-icon {
-    color: var(--color-tertiary);
-    width: 5%;
+  color: var(--color-tertiary);
+  width: 5%;
 }
 
 .search-text {
-    border: none;
-    width: 95%;
+  border: none;
+  width: 95%;
 }
 
 .new-grade-input {
-    height: 45px;
-    padding: 8px 16px;
-    background-color: var(--color-accent);
-    color: var(--color-tertiary);
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
-    margin-right: 10px;
+  height: 45px;
+  padding: 8px 16px;
+  background-color: var(--color-accent);
+  color: var(--color-tertiary);
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
+  margin-right: 10px;
 }
 
 .new-query-search-button {
-    height: 45px;
-    padding: 8px 16px;
-    background-color: var(--color-accent);
-    color: var(--color-tertiary);
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
+  height: 45px;
+  padding: 8px 16px;
+  background-color: var(--color-accent);
+  color: var(--color-tertiary);
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.4);
 }
 
 .new-query-search-button:hover {
-    background-color: var(--color-buttonhover);
+  background-color: var(--color-buttonhover);
 }
