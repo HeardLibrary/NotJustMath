@@ -6,7 +6,8 @@
   --color-accent2: #e76f51;
   --color-header: #1a3039;
   --color-buttonhover: #d4a02b;
-  --ff: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
+  /* --ff: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif; */
+  --ff: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --h1: bold 3rem var(--ff);
   --h2: bold 2.25rem var(--ff);
   --h3: bold 1.5rem var(--ff);

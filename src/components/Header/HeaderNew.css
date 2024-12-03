@@ -50,6 +50,11 @@
   color: var(--color-secondary);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+  
+}
+
+.header-option:hover {
+  text-decoration: none;
 }
 
 .header-options-right {
