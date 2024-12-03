@@ -8,7 +8,7 @@ const AboutUs = () => {
         <div className="about-us-page-container">
             <div className="hero">
                 <h3>Empowering Education Through Justice</h3>
-                <h2>Integrating Social Justice Themes in K-5 Math Education</h2>
+                <h2 style={{ color: "#e9c46a" }}>Integrating Social Justice Themes in K-5 Math Education</h2>
             </div>
 
             <div className="main-container">
@@ -27,7 +27,7 @@ const AboutUs = () => {
 
 
             <div className="meet-team-container">
-                <h2>Acknowledgements</h2>
+                <h2 style={{ color: "#e9c46a" }}>Acknowledgements</h2>
 
             </div>
         </div>
