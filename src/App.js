@@ -1,15 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Authenticator } from "@aws-amplify/ui-react";
-import GuidePage from './pages/GuidePage/GuidePage';
-import HomePage from './pages/HomePage/HomePage';
-import LessonPage from './pages/LessonPage/LessonPageNew';
-import SearchPage from './pages/SearchPage/SearchPage';
+import HomePage from "./pages/HomePage/HomePage";
+import LessonPage from "./pages/LessonPage/LessonPageNew";
+import SearchPage from "./pages/SearchPage/SearchPage";
 import UploadPage from "./pages/UploadPage/UploadPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import BadRequestPage from "./pages/BadRequestPage/BadRequestPage";
 import AboutUs from "./pages/AboutUsPage/AboutUs";
-import './App.css';
-import './globals.css';
+import "./App.css";
+import "./globals.css";
 import Header from "./components/Header/HeaderNew";
 
 const App = () => {
@@ -21,7 +20,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<HomePage />} />
-            <Route path="/guide" element={<GuidePage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/lesson/:lessonID" element={<LessonPage />} />
