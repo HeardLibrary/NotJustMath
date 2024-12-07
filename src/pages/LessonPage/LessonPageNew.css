@@ -42,6 +42,7 @@
     text-align: flex-start;
     flex: 1;
     background-color: var(--color-secondary);
+    color: var(--color-tertiary);
 }
 
 .label {
