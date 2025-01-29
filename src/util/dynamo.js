@@ -119,6 +119,11 @@ const searchLessonPlansWithContains = async (query) => {
                                 contains: query
                             }
                         },
+                         {
+                            full_text: {
+                                contains: query
+                            }
+                        }
                     ]
                 }
             }
