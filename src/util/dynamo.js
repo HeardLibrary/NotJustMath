@@ -83,8 +83,6 @@ export const listLessonPlans = async () => {
 }
 
 const searchLessonPlansWithContains = async (query) => {
-    let lowercaseQuery = query.toLowerCase();
-
     try {
         let containsResult = await apiClient.graphql({
             query: listLessonPlanMetadata,
@@ -123,7 +121,7 @@ const searchLessonPlansWithContains = async (query) => {
                         },
                          {
                             full_text: {
-                                contains: lowercaseQuery
+                                contains: query
                             }
                         }
                     ]
