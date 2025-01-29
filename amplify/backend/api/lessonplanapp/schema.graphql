@@ -14,4 +14,5 @@ type LessonPlanMetadata @model @searchable{
   standard_tags: [String]
   approval_state: String!
   lesson_title: String!
+  full_text: String!
 }
