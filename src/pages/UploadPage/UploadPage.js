@@ -16,7 +16,10 @@ const UPLOAD_FAILURE = "failure";
 
 const UploadPage = () => {
     const [file, setFile] = useState(null);
-    const [metadata, setMetadata] = useState({});
+    const [metadata, setMetadata] = useState({
+        grade_level_lower: "0",
+        grade_level_upper: "0"
+    });
     const [mathTags, setMathTags] = useState([]);
     const [standardTags, setStandardTags] = useState([]);
     const [socialTags, setSocialTags] = useState([]);
@@ -28,10 +31,13 @@ const UploadPage = () => {
 }
 
     const handleGenericChange = (event) => {
-        metadata[event.target.name] = event.target.value;
-        setMetadata(metadata);
+        setMetadata((prevMetadata) => ({
+            ...prevMetadata,
+            [event.target.name]: event.target.value
+        }));
         setUploadState(UPLOAD_BEFORE);
-    }
+    };
+
 
     const handleTagSetChange = (event) => {
         const tagType = event.target.name;
@@ -72,8 +78,8 @@ const UploadPage = () => {
         document.getElementById("file-input").value = null;
 
         // Reset grade level inputs
-        document.getElementById("grade_level_lower").value = null;
-        document.getElementById("grade_level_upper").value = null;
+        document.getElementById("grade_level_lower").value = "0";
+        document.getElementById("grade_level_upper").value = "0";
 
         // Reset text inputs
         document.getElementById("text_title").value = null;
