@@ -81,6 +81,7 @@ export const listLessonPlans = async () => {
         return [];
     }
 }
+//Temporary search implementation, not scalable
 
 const searchLessonPlansWithContains = async (query) => {
     try {
@@ -90,28 +91,8 @@ const searchLessonPlansWithContains = async (query) => {
             variables: {
                 filter: {
                     or: [
-                        {
-                            lesson_title: {
-                                contains: query
-                            },
-                        },
-                        { 
-                            text_title: {
-                                contains: query
-                            } 
-                        },
                         { 
                             text_author: {
-                                contains: query
-                            } 
-                        },
-                        { 
-                            social_concept_tags: {
-                                contains: query
-                            } 
-                        },
-                        { 
-                            math_concept_tags: {
                                 contains: query
                             } 
                         },
@@ -144,90 +125,163 @@ const searchLessonPlansWithContains = async (query) => {
         return []
     }
 }
-
-const searchLessonPlansWithElasticSearch = async (query) => {
-    try {
-        let elasticSearchResults = await apiClient.graphql({
-            query: searchLessonPlanMetadata,
-            variables: {
-                filter: {
-                    or: [
-                        {
-                            lesson_title: {
-                                match: {
-                                    lesson_title: query
-                                }
-                            },
-                        },
-                        { 
-                            text_title: {
-                                match: {
-                                    text_title: query
-                                }
-                            } 
-                        },
-                        { 
-                            text_author: {
-                                match: {
-                                    text_author: query
-                                }
-                            } 
-                        },
-                        { 
-                            social_concept_tags: {
-                                match: {
-                                    social_concept_tags: query
-                                }
-                            } 
-                        },
-                        { 
-                            math_concept_tags: {
-                                match: {
-                                    math_concept_tags: query
-                                }
-                            } 
-                        },
-                    ]
-                }
-            }
-        });
-
-        if (elasticSearchResults.data) {
-            elasticSearchResults = elasticSearchResults.data.searchLessonPlanMetadata.items;
-        } else {
-            console.error(elasticSearchResults.errors);
-            elasticSearchResults = [];
-        }
-
-        return elasticSearchResults;
-    } catch (error) {
-        console.error(error)
-        return [];
-    }
-}
-
 export const searchLessonPlans = async (query) => {
     try {
-        // Get results from two sources
-        const containsQuery = searchLessonPlansWithContains(query);
-        const elasticSearchQuery = searchLessonPlansWithElasticSearch(query);
-
-        const results = await Promise.all([containsQuery, elasticSearchQuery])
-        const containsSearchResults = results[0]
-        const elasticSearchResults = results[1]
-
-        // Remove duplicate results
-        let totalResults = elasticSearchResults;
-        const elasticSearchResultIDs = new Set(elasticSearchResults.map(result => result.id))
-        containsSearchResults.forEach(result => {
-            if (!elasticSearchResultIDs.has(result.id)) {
-                totalResults.push(result);
-            }
-        })
-
-        return totalResults;
+        // Get results from only DynamoDB search
+        const results = await searchLessonPlansWithContains(query);
+        
+        return results;
     } catch (error) {
         console.log(error);
         return [];
     }
-}
+};
+
+//Code for use with Elastic/OpenSearch
+// const searchLessonPlansWithContains = async (query) => {
+//     try {
+//         let containsResult = await apiClient.graphql({
+//             query: listLessonPlanMetadata,
+//             variables: {
+//                 filter: {
+//                     or: [
+//                         {
+//                             lesson_title: {
+//                                 contains: query
+//                             },
+//                         },
+//                         { 
+//                             text_title: {
+//                                 contains: query
+//                             } 
+//                         },
+//                         { 
+//                             text_author: {
+//                                 contains: query
+//                             } 
+//                         },
+//                         { 
+//                             social_concept_tags: {
+//                                 contains: query
+//                             } 
+//                         },
+//                         { 
+//                             math_concept_tags: {
+//                                 contains: query
+//                             } 
+//                         },
+//                         {
+//                             standard_tags: {
+//                                 contains: query
+//                             }
+//                         }
+//                     ]
+//                 }
+//             }
+//         });
+
+
+//         if (containsResult.data) {
+//             containsResult = containsResult.data.listLessonPlanMetadata.items;
+//         } else {
+//             console.error(containsResult.errors);
+//             containsResult = [];
+//         }
+
+//         return containsResult;
+//     } catch (error) {
+//         console.error(error)
+//         return []
+//     }
+// }
+// const searchLessonPlansWithElasticSearch = async (query) => {
+//     try {
+//         let elasticSearchResults = await apiClient.graphql({
+//             query: searchLessonPlanMetadata,
+//             variables: {
+//                 filter: {
+//                     or: [
+//                         {
+//                             lesson_title: {
+//                                 match: {
+//                                     lesson_title: query
+//                                 }
+//                             },
+//                         },
+//                         { 
+//                             text_title: {
+//                                 match: {
+//                                     text_title: query
+//                                 }
+//                             } 
+//                         },
+//                         { 
+//                             text_author: {
+//                                 match: {
+//                                     text_author: query
+//                                 }
+//                             } 
+//                         },
+//                         { 
+//                             social_concept_tags: {
+//                                 match: {
+//                                     social_concept_tags: query
+//                                 }
+//                             } 
+//                         },
+//                         { 
+//                             math_concept_tags: {
+//                                 match: {
+//                                     math_concept_tags: query
+//                                 }
+//                             } 
+//                         },
+//                     ]
+//                 }
+//             }
+//         });
+
+//         if (elasticSearchResults.data) {
+//             elasticSearchResults = elasticSearchResults.data.searchLessonPlanMetadata.items;
+//         } else {
+//             console.error(elasticSearchResults.errors);
+//             elasticSearchResults = [];
+//         }
+
+//         return elasticSearchResults;
+//     } catch (error) {
+//         console.error(error)
+//         return [];
+//     }
+// }
+
+
+
+
+// export const searchLessonPlans = async (query) => {
+//     try {
+//         Get results from two sources
+//         const containsQuery = searchLessonPlansWithContains(query);
+//         const elasticSearchQuery = searchLessonPlansWithElasticSearch(query);
+
+//         const results = await Promise.all([containsQuery, elasticSearchQuery])
+
+        // const containsSearchResults = results[0]
+        // const elasticSearchResults = results[1]
+
+        // Remove duplicate results
+        // let totalResults = elasticSearchResults;
+        // const elasticSearchResultIDs = new Set(elasticSearchResults.map(result => result.id))
+//          containsSearchResults.forEach(result => {
+//              if (!elasticSearchResultIDs.has(result.id)) {
+//                  totalResults.push(result);
+//              }
+//          })
+
+//          return totalResults;
+
+//     } catch (error) {
+//         console.log(error);
+//         return [];
+//     }
+// }
